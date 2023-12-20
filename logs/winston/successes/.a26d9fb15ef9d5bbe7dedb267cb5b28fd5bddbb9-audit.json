@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\.a26d9fb15ef9d5bbe7dedb267cb5b28fd5bddbb9-audit.json",
+    "files": [
+        {
+            "date": 1703086163944,
+            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2023-20-12-21-success.log",
+            "hash": "07d53447ab67645a5e03386d244e46dae2403560c3ada381a8b3a1bd90ebd256"
+        },
+        {
+            "date": 1703092811050,
+            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2023-20-12-23-success.log",
+            "hash": "2feee09068a43b571e0a8a5d1c48bcb029614e975ebcb3a2b38d716c90d64086"
+        },
+        {
+            "date": 1703095464491,
+            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2023-21-12-00-success.log",
+            "hash": "060f108abfcaa721b7a789f199c46ab22ceeda1ff90519a691ab78a725f6fcec"
+        }
+    ],
+    "hashType": "sha256"
+}

@@ -9,3 +9,55 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id                        String                      @id @default(uuid())
+  email                     String
+  password                  String
+  role                      UserRole
+  needPasswordChange        Boolean?                    @default(true)
+  pushNotificationToken     String?
+  status                    UserStatus                  @default(PENDING)
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @updatedAt
+
+  @@map("users")
+}
+
+model Doctor {
+  id                        String                    @id @default(uuid())
+  email                     String
+  name                      String
+  profilePhoto              String?
+  contactNumber             String
+  address                   String?
+  registrationNumber        String
+  experience                Int                      @default(0)
+  gender                    Gender
+  apointmentFee             Int 
+  qualification             String 
+  currentWorkingPlace       String 
+  designation               String 
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @updatedAt
+
+  @@map("doctors")
+}
+
+
+
+enum UserRole {
+  ADMIN
+  DOCTOR
+  PATIENT
+}
+
+enum UserStatus {
+  BLOCKED
+  ACTIVE
+  PENDING
+}
+enum Gender {
+  MALE
+  FEMALE
+}
