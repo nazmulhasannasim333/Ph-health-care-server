@@ -5,8 +5,7 @@ import { DoctorController } from './doctor.controller';
 
 const router = express.Router();
 
-// router.get('/',
-//     StudentController.getAllFromDB);
+router.get('/', DoctorController.getAllFromDB);
 
 router.get('/:id', DoctorController.getByIdFromDB);
 

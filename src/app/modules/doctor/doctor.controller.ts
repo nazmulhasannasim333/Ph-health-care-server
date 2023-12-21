@@ -3,6 +3,8 @@ import catchAsync from '../../../shared/catchAsync';
 import { DoctorService } from './doctor.services';
 import sendResponse from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
+import pick from '../../../shared/pick';
+import { doctorFilterableFields } from './doctor.constants';
 
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const result = await DoctorService.insertIntoDB(req.body);
@@ -14,18 +16,18 @@ const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-// const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
-//     const filters = pick(req.query, studentFilterableFields);
-//     const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
-//     const result = await StudentService.getAllFromDB(filters, options);
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: 'Students fetched successfully',
-//         meta: result.meta,
-//         data: result.data
-//     });
-// });
+const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
+  const filters = pick(req.query, doctorFilterableFields);
+  const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
+  const result = await DoctorService.getAllFromDB(filters, options);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Doctors retrieval successfully',
+    meta: result.meta,
+    data: result.data,
+  });
+});
 
 const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -63,7 +65,7 @@ const deleteFromDB = catchAsync(async (req: Request, res: Response) => {
 
 export const DoctorController = {
   insertIntoDB,
-  //   getAllFromDB,
+  getAllFromDB,
   getByIdFromDB,
   updateIntoDB,
   deleteFromDB,
