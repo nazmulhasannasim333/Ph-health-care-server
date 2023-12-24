@@ -2,6 +2,7 @@ import cors from 'cors';
 import express, { Application, NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
+import routes from './app/routes';
 
 import cookieParser from 'cookie-parser';
 
@@ -14,14 +15,13 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//app.use('/api/v1', routes);
+app.use('/api/v1', routes);
 
 app.get('/test', async (req: Request, res: Response) => {
   res.status(200).json({
-    message: "Server working....!"
-  })
+    message: 'Server working....!',
+  });
 });
-
 
 //global error handler
 app.use(globalErrorHandler);
