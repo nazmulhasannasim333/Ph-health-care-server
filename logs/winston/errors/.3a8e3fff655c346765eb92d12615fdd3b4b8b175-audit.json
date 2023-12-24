@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/.3a8e3fff655c346765eb92d12615fdd3b4b8b175-audit.json",
+    "files": [
+        {
+            "date": 1703410086932,
+            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2023-24-12-15-error.log",
+            "hash": "44f8d3bfe2070419553f2cbd64f5ffb12d5513bbc5fb2b55045c8f4c35fd9871"
+        },
+        {
+            "date": 1703413950250,
+            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2023-24-12-16-error.log",
+            "hash": "4a561d5594693791c5920893e95894c83d2d2c1da38d1a744991ba0791ee2403"
+        },
+        {
+            "date": 1703415615683,
+            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2023-24-12-17-error.log",
+            "hash": "65131580aa89126c769a78e27728a587b84b8d50a00b89ac481c01bff3919494"
+        }
+    ],
+    "hashType": "sha256"
+}

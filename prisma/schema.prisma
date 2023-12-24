@@ -11,48 +11,47 @@ datasource db {
 }
 
 model User {
-  id                        String                      @id @default(uuid())
-  email                     String
-  password                  String
-  role                      UserRole
-  needPasswordChange        Boolean?                    @default(true)
-  pushNotificationToken     String?
-  status                    UserStatus                  @default(PENDING)
-  createdAt                 DateTime                    @default(now())
-  updatedAt                 DateTime                    @updatedAt
+  id                    String     @id @default(uuid())
+  email                 String     @unique
+  password              String
+  role                  UserRole
+  needPasswordChange    Boolean?   @default(true)
+  pushNotificationToken String?
+  status                UserStatus @default(PENDING)
+  createdAt             DateTime   @default(now())
+  updatedAt             DateTime   @updatedAt
+  Doctor                Doctor?
 
   @@map("users")
 }
 
 model Doctor {
-  id                        String                    @id @default(uuid())
-  email                     String
-  name                      String
-  profilePhoto              String?
-  contactNumber             String
-  address                   String?
-  registrationNumber        String
-  experience                Int                       @default(0)
-  gender                    Gender
-  apointmentFee             Int 
-  qualification             String 
-  currentWorkingPlace       String 
-  designation               String 
-  specialties               Specialties[]               
-  createdAt                 DateTime                    @default(now())
-  updatedAt                 DateTime                    @updatedAt
+  id                  String   @id @default(uuid())
+  email               String   @unique
+  name                String
+  profilePhoto        String?
+  contactNumber       String
+  address             String?
+  registrationNumber  String
+  experience          Int      @default(0)
+  gender              Gender
+  apointmentFee       Int
+  qualification       String
+  currentWorkingPlace String
+  designation         String
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  user                User     @relation(references: [email], fields: [email])
 
   @@map("doctors")
 }
 
-
 model Specialties {
-  id                        String                    @id @default(uuid())
-  title                     String
-  doctors                   Doctor[]
+  id    String @id @default(uuid())
+  title String
+
   @@map("specialties")
 }
-
 
 enum UserRole {
   ADMIN
@@ -65,6 +64,7 @@ enum UserStatus {
   ACTIVE
   PENDING
 }
+
 enum Gender {
   MALE
   FEMALE
