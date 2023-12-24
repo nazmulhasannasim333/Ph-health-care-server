@@ -1,24 +1,34 @@
+import { Gender, UserStatus } from '@prisma/client';
 import { z } from 'zod';
 
-const create = z.object({
+const createDoctor = z.object({
     body: z.object({
-        title: z.string({
-            required_error: 'Title is required'
-        }),
-        academicFacultyId: z.string({
-            required_error: 'Academic faculty id is required'
+        password: z.string(),
+        pushNotificationToken: z.string(),
+        doctor: z.object({
+            email: z.string().email(),
+            name: z.string(),
+            profilePhoto: z.string().nullable(),
+            contactNumber: z.string(),
+            address: z.string().nullable(),
+            registrationNumber: z.string(),
+            experience: z.number().int(),
+            gender: z.enum(["MALE", "FEMALE"]),
+            apointmentFee: z.number(),
+            qualification: z.string(),
+            currentWorkingPlace: z.string(),
+            designation: z.string(),
         })
     })
 });
 
-const update = z.object({
+const updateStatus = z.object({
     body: z.object({
-        title: z.string().optional(),
-        academicFacultyId: z.string().optional()
+        status: z.enum(['PENDING', 'ACTIVE', 'BLOCKED'])
     })
 });
 
-export const AcademicDepartmentValidation = {
-    create,
-    update
+export const UserValidation = {
+    createDoctor,
+    updateStatus
 };

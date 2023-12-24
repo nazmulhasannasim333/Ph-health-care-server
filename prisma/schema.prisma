@@ -15,7 +15,7 @@ model User {
   email                 String     @unique
   password              String
   role                  UserRole
-  needPasswordChange    Boolean?   @default(true)
+  needPasswordChange    Boolean    @default(true)
   pushNotificationToken String?
   status                UserStatus @default(PENDING)
   createdAt             DateTime   @default(now())
