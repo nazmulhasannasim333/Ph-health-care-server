@@ -17,7 +17,7 @@ model User {
   role                      UserRole
   needPasswordChange        Boolean?                    @default(true)
   pushNotificationToken     String?
-  status                    UserStatus                  @default(PENDING)
+  status                    UserStatus                  @default("PENDING")
   createdAt                 DateTime                    @default(now())
   updatedAt                 DateTime                    @updatedAt
 

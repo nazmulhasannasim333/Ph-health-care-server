@@ -94,8 +94,9 @@ const getByIdFromDB = async (id: string): Promise<Doctor | null> => {
 const updateIntoDB = async (
   id: string,
   payload: Partial<Doctor>,
-  specialties: Specialties[],
+  specialties: string[],
 ): Promise<Doctor> => {
+  const specialtiesData = specialties?.map(id => ({ id }));
   const result = await prisma.doctor.update({
     where: {
       id,
@@ -103,7 +104,7 @@ const updateIntoDB = async (
     data: {
       ...payload,
       specialties: {
-        set: specialties,
+        set: specialtiesData,
       },
     },
   });
