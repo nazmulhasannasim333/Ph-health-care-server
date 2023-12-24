@@ -25,20 +25,7 @@ const deleteFromDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const addDoctorSpecialities = catchAsync(
-  async (req: Request, res: Response) => {
-    const result = await SpecialtiesService.addDoctorSpecialities(req.body);
-    sendResponse(res, {
-      statusCode: httpStatus.OK,
-      success: true,
-      message: 'Doctor specialties Added successfully',
-      data: result,
-    });
-  },
-);
-
 export const SpecialtiesController = {
   insertIntoDB,
   deleteFromDB,
-  addDoctorSpecialities,
 };

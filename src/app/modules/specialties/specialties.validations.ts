@@ -8,18 +8,6 @@ const create = z.object({
   }),
 });
 
-const doctorSpecialities = z.object({
-  body: z.object({
-    specialtiesId: z.string({
-      required_error: 'SpecialtiesId is required',
-    }),
-    doctorId: z.string({
-      required_error: 'DoctorId is required',
-    }),
-  }),
-});
-
 export const SpecialtiesValidation = {
   create,
-  doctorSpecialities,
 };

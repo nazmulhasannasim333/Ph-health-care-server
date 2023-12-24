@@ -54,6 +54,56 @@ model Specialties {
 }
 
 
+model Patient {
+  id                        String                    @id @default(uuid())
+  email                     String
+  name                      String
+  profilePhoto              String?
+  contactNumber             String
+  address                   String?            
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @updatedAt
+
+  @@map("patients")
+}
+
+model PatientHelthData {
+  id                        String                    @id @default(uuid())
+  dateOfBirth               DateTime
+  gender                    Gender
+  bloodGroup                BloodGroup
+  hasAllergies              Boolean?                    @default(false)
+  hasDiabetes               Boolean?                    @default(false)
+  height                    String
+  weight                    String
+  smokingStatus             Boolean?                    @default(false)
+  dietaryPreferences        String?
+  PregnancyStatus           Boolean?                    @default(false)
+  mentalHealthHistory       String                   
+  immunizationStatus        Boolean?                    @default(false)
+  hasPastSurgeries          Boolean?                    @default(false)
+  recentAnxiety             Boolean?                    @default(false)
+  recentDepression          Boolean?                    @default(false)
+  maritalStatus             MaritalStatus
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @updatedAt
+
+  @@map("patientHelthDatas")
+}
+
+model medicalReport {
+  id                        String                    @id @default(uuid())
+  patientId                 String
+  patient                                             Patient @relation(fields: [patientId], references: [id])
+  
+  ReportName                String
+  ReportLink                String           
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @updatedAt
+
+  @@map("medicalReports")
+}
+
 enum UserRole {
   ADMIN
   DOCTOR
@@ -68,4 +118,18 @@ enum UserStatus {
 enum Gender {
   MALE
   FEMALE
+}
+enum MaritalStatus {
+  MARRIED
+  UNMARRIED
+}
+enum BloodGroup {
+  A+
+  A-
+  B+
+  B-
+  AB+
+  AB-
+  O+
+  O-
 }
