@@ -11,7 +11,7 @@ export async function sendEmail(
         secure: false,
         auth: {
             user: config.email,
-            pass: config.appPass,
+            pass: config.app_pass,
         },
     });
 

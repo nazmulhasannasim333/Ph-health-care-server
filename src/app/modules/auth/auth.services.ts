@@ -15,6 +15,7 @@ import {
 import prisma from '../../../shared/prisma';
 import { AuthUtils } from './auth.utils';
 import { hashedPassword } from '../../../helpers/hashPasswordHelper';
+import { sendEmail } from './sendResetMail';
 
 const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
     const { email, password } = payload;
@@ -129,69 +130,67 @@ const changePassword = async (
     })
 };
 
-// const forgotPass = async (payload: { id: string }) => {
+const forgotPass = async (email: string) => {
 
-//     const user = await User.findOne({ id: payload.id }, { id: 1, role: 1 });
+    const isUserExist = await prisma.user.findUnique({
+        where: {
+            email
+        }
+    });
 
-//     if (!user) {
-//         throw new ApiError(httpStatus.BAD_REQUEST, "User does not exist!")
-//     }
+    if (!isUserExist) {
+        throw new ApiError(httpStatus.BAD_REQUEST, "User does not exist!")
+    }
 
-//     let profile = null;
-//     if (user.role === ENUM_USER_ROLE.ADMIN) {
-//         profile = await Admin.findOne({ id: user.id })
-//     }
-//     else if (user.role === ENUM_USER_ROLE.FACULTY) {
-//         profile = await Faculty.findOne({ id: user.id })
-//     }
-//     else if (user.role === ENUM_USER_ROLE.STUDENT) {
-//         profile = await Student.findOne({ id: user.id })
-//     }
+    const passResetToken = await jwtHelpers.createPasswordResetToken({
+        id: isUserExist.id
+    });
 
-//     if (!profile) {
-//         throw new ApiError(httpStatus.BAD_REQUEST, "Pofile not found!")
-//     }
+    const resetLink: string = config.reset_link + `?id=${isUserExist.id}&token=${passResetToken}`
 
-//     if (!profile.email) {
-//         throw new ApiError(httpStatus.BAD_REQUEST, "Email not found!")
-//     }
+    await sendEmail(email, `
+      <div>
+        <p>Dear ${isUserExist.role},</p>
+        <p>Your password reset link: <a href=${resetLink}><button>RESET PASSWORD<button/></a></p>
+        <p>Thank you</p>
+      </div>
+  `);
+}
 
-//     const passResetToken = await jwtHelpers.createResetToken({ id: user.id }, config.jwt.secret as string, '50m')
+const resetPassword = async (payload: { id: string, newPassword: string }, token: string) => {
 
-//     const resetLink: string = config.resetlink + `token=${passResetToken}`
+    const isUserExist = await prisma.user.findUnique({
+        where: {
+            id: payload.id
+        }
+    })
 
-//     console.log("profile: ", profile)
-//     await sendEmail(profile.email, `
-//       <div>
-//         <p>Hi, ${profile.name.firstName}</p>
-//         <p>Your password reset link: <a href=${resetLink}>Click Here</a></p>
-//         <p>Thank you</p>
-//       </div>
-//   `);
+    if (!isUserExist) {
+        throw new ApiError(httpStatus.BAD_REQUEST, "User not found!")
+    }
 
-//     // return {
-//     //   message: "Check your email!"
-//     // }
-// }
+    const isVarified = jwtHelpers.verifyToken(token, config.jwt.secret as string);
 
-// const resetPassword = async (payload: { id: string, newPassword: string }, token: string) => {
+    if (!isVarified) {
+        throw new ApiError(httpStatus.UNAUTHORIZED, "Something went wrong!")
+    }
 
-//     const { id, newPassword } = payload;
-//     const user = await User.findOne({ id }, { id: 1 })
+    const password = await bcrypt.hash(payload.newPassword, Number(config.bycrypt_salt_rounds));
 
-//     if (!user) {
-//         throw new ApiError(httpStatus.BAD_REQUEST, "User not found!")
-//     }
-
-//     const isVarified = await jwtHelpers.verifyToken(token, config.jwt.secret as string);
-
-//     const password = await bcrypt.hash(newPassword, Number(config.bycrypt_salt_rounds))
-
-//     await User.updateOne({ id }, { password });
-// }
+    await prisma.user.update({
+        where: {
+            id: payload.id
+        },
+        data: {
+            password
+        }
+    })
+}
 
 export const AuthService = {
     loginUser,
     refreshToken,
-    changePassword
+    changePassword,
+    forgotPass,
+    resetPassword
 };
