@@ -32,13 +32,13 @@ model Doctor {
   contactNumber             String
   address                   String?
   registrationNumber        String
-  experience                Int                      @default(0)
+  experience                Int                       @default(0)
   gender                    Gender
   apointmentFee             Int 
   qualification             String 
   currentWorkingPlace       String 
   designation               String 
-  specialties               DoctorSpecialties[]
+  specialties               Specialties[]               
   createdAt                 DateTime                    @default(now())
   updatedAt                 DateTime                    @updatedAt
 
@@ -49,21 +49,9 @@ model Doctor {
 model Specialties {
   id                        String                    @id @default(uuid())
   title                     String
-  doctors     DoctorSpecialties[]
+  doctors                   Doctor[]
   @@map("specialties")
 }
-
-model DoctorSpecialties {
-  specialtiesId              String
-  specialties                Specialties @relation(fields: [specialtiesId], references: [id])
-  
-  doctorId                   String
-  doctor                     Doctor @relation(fields: [doctorId], references: [id])
-  
-  @@id([specialtiesId, doctorId])
-  @@map("doctor_specialties")
-}
-
 
 
 enum UserRole {

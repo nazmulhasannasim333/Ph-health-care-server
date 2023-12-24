@@ -1,4 +1,4 @@
-import { Doctor, Prisma } from '@prisma/client';
+import { Doctor, Prisma, Specialties } from '@prisma/client';
 import prisma from '../../../shared/prisma';
 import { IDoctorFilterRequest } from './doctor.interface';
 import { IPaginationOptions } from '../../../interfaces/pagination';
@@ -9,6 +9,9 @@ import { doctorSearchableFields } from './doctor.constants';
 const insertIntoDB = async (data: Doctor): Promise<Doctor> => {
   const result = await prisma.doctor.create({
     data,
+    include: {
+      specialties: true,
+    },
   });
   return result;
 };
@@ -91,13 +94,18 @@ const getByIdFromDB = async (id: string): Promise<Doctor | null> => {
 const updateIntoDB = async (
   id: string,
   payload: Partial<Doctor>,
+  specialties: Specialties[],
 ): Promise<Doctor> => {
-  // const {specialties, ...doctorData } = payload
   const result = await prisma.doctor.update({
     where: {
       id,
     },
-    data: payload,
+    data: {
+      ...payload,
+      specialties: {
+        set: specialties,
+      },
+    },
   });
   return result;
 };
