@@ -21,6 +21,7 @@ model User {
   createdAt             DateTime   @default(now())
   updatedAt             DateTime   @updatedAt
   Doctor                Doctor?
+  Patient                Patient?
 
   @@map("users")
 }
@@ -39,6 +40,7 @@ model Doctor {
   qualification       String
   currentWorkingPlace String
   designation         String
+  specialties         DoctorSpecialties[]
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
   user                User     @relation(references: [email], fields: [email])
@@ -49,37 +51,53 @@ model Doctor {
 model Specialties {
   id    String @id @default(uuid())
   title String
-
+  doctors     DoctorSpecialties[]
   @@map("specialties")
 }
 
 
+model DoctorSpecialties {
+  specialtiesId              String
+  specialties                Specialties @relation(fields: [specialtiesId], references: [id])
+  
+  doctorId                   String
+  doctor                     Doctor @relation(fields: [doctorId], references: [id])
+  
+  @@id([specialtiesId, doctorId])
+  @@map("doctor_specialties")
+}
+
+
 model Patient {
-  id                        String                    @id @default(uuid())
-  email                     String
+  id                        String                    @id @unique @default(uuid())
+  email                     String                    @unique
   name                      String
   profilePhoto              String?
-  contactNumber             String
+  contactNumber             String?
   address                   String?            
   createdAt                 DateTime                    @default(now())
   updatedAt                 DateTime                    @updatedAt
-
+  medicalReport             MedicalReport[]
+  patientHelthData          PatientHelthData?
+  user                User     @relation(references: [email], fields: [email])
   @@map("patients")
 }
 
 model PatientHelthData {
   id                        String                    @id @default(uuid())
-  dateOfBirth               DateTime
+  patientId                 String                    @unique
+  patient                   Patient @relation(fields: [patientId], references: [id])
+  dateOfBirth               DateTime?
   gender                    Gender
   bloodGroup                BloodGroup
   hasAllergies              Boolean?                    @default(false)
   hasDiabetes               Boolean?                    @default(false)
-  height                    String
-  weight                    String
+  height                    String?
+  weight                    String?
   smokingStatus             Boolean?                    @default(false)
   dietaryPreferences        String?
-  PregnancyStatus           Boolean?                    @default(false)
-  mentalHealthHistory       String                   
+  pregnancyStatus           Boolean?                    @default(false)
+  mentalHealthHistory       String?                   
   immunizationStatus        Boolean?                    @default(false)
   hasPastSurgeries          Boolean?                    @default(false)
   recentAnxiety             Boolean?                    @default(false)
@@ -91,13 +109,13 @@ model PatientHelthData {
   @@map("patientHelthDatas")
 }
 
-model medicalReport {
+model MedicalReport {
   id                        String                    @id @default(uuid())
-  patientId                 String
-  patient                                             Patient @relation(fields: [patientId], references: [id])
+  patientId                 String                    
+  patient                   Patient @relation(fields: [patientId], references: [id])
   
-  ReportName                String
-  ReportLink                String           
+  reportName                String
+  reportLink                String           
   createdAt                 DateTime                    @default(now())
   updatedAt                 DateTime                    @updatedAt
 
@@ -124,13 +142,14 @@ enum MaritalStatus {
   MARRIED
   UNMARRIED
 }
+
 enum BloodGroup {
-  A+
-  A-
-  B+
-  B-
-  AB+
-  AB-
-  O+
-  O-
+  A_POSITIVE
+  A_NEGATIVE
+  B_POSITIVE
+  B_NEGATIVE
+  O_POSITIVE
+  O_NEGATIVE
+  AB_POSITIVE
+  AB_NEGATIVE
 }
