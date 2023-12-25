@@ -112,7 +112,7 @@ const updateIntoDB = async (
         data: patientHelthData,
       });
     }
-    if (!result?.patientHelthData) {
+    if (!result?.patientHelthData && patientHelthData) {
       const newHelthData = await transactionClient.patientHelthData.create({
         data: {
           patientId: id,
@@ -145,6 +145,16 @@ const updateIntoDB = async (
 };
 
 const deleteFromDB = async (id: string): Promise<Patient> => {
+  await prisma.patientHelthData.delete({
+    where: {
+      patientId: id,
+    },
+  });
+  await prisma.medicalReport.deleteMany({
+    where: {
+      patientId: id,
+    },
+  });
   const result = await prisma.patient.delete({
     where: {
       id,
