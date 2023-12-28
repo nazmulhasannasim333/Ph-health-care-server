@@ -21,6 +21,33 @@ const createDoctor = z.object({
     }),
   }),
 });
+const createAdmin = z.object({
+  body: z.object({
+    password: z.string(),
+    pushNotificationToken: z.string(),
+    admin: z.object({
+      email: z.string().email(),
+      name: z.string(),
+      profilePhoto: z.string().nullable(),
+      contactNumber: z.string(),
+      gender: z.enum(['MALE', 'FEMALE']),
+      designation: z.string(),
+      dateOfBirth: z.string(),
+      bloodGroup: z.enum([
+        'A_POSITIVE',
+        'A_NEGATIVE',
+        'B_POSITIVE',
+        'B_NEGATIVE',
+        'O_POSITIVE',
+        'O_NEGATIVE',
+        'AB_POSITIVE',
+        'AB_NEGATIVE',
+      ]),
+      weight: z.string(),
+      maritalStatus: z.enum(['MARRIED', 'UNMARRIED']),
+    }),
+  }),
+});
 const createPatient = z.object({
   body: z.object({
     password: z.string(),
@@ -40,6 +67,7 @@ const updateStatus = z.object({
 
 export const UserValidation = {
   createDoctor,
+  createAdmin,
   createPatient,
   updateStatus,
 };
