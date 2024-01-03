@@ -1,4 +1,4 @@
-import { Doctor, Prisma, Specialties } from '@prisma/client';
+import { Doctor, Prisma, Specialties, UserStatus } from '@prisma/client';
 import prisma from '../../../shared/prisma';
 import { IDoctorFilterRequest } from './doctor.interface';
 import { IPaginationOptions } from '../../../interfaces/pagination';
@@ -43,6 +43,10 @@ const getAllFromDB = async (
     });
   }
 
+  andConditions.push({
+    isDeleted: false,
+  });
+
   const whereConditions: Prisma.DoctorWhereInput =
     andConditions.length > 0 ? { AND: andConditions } : {};
 
@@ -77,6 +81,7 @@ const getByIdFromDB = async (id: string): Promise<Doctor | null> => {
   const result = await prisma.doctor.findUnique({
     where: {
       id,
+      isDeleted: false
     },
   });
   return result;
@@ -84,10 +89,8 @@ const getByIdFromDB = async (id: string): Promise<Doctor | null> => {
 
 const updateIntoDB = async (
   id: string,
-  payload: Partial<Doctor>,
-  specialties: string[],
+  payload: Partial<Doctor>
 ): Promise<Doctor> => {
-  const specialtiesData = specialties?.map(id => ({ id }));
   const result = await prisma.doctor.update({
     where: {
       id,
@@ -100,12 +103,32 @@ const updateIntoDB = async (
 };
 
 const deleteFromDB = async (id: string): Promise<Doctor> => {
-  const result = await prisma.doctor.delete({
-    where: {
-      id,
-    },
-  });
-  return result;
+  // const result = await prisma.doctor.delete({
+  //   where: {
+  //     id,
+  //   },
+  // });
+  // return result;
+
+  return await prisma.$transaction(async (transactionClient) => {
+    const deleteDoctor = await transactionClient.doctor.update({
+      where: { id },
+      data: {
+        isDeleted: true
+      }
+    })
+
+    await transactionClient.user.update({
+      where: {
+        email: deleteDoctor.email
+      },
+      data: {
+        status: UserStatus.DELETED
+      }
+    })
+
+    return deleteDoctor;
+  })
 };
 
 export const DoctorService = {

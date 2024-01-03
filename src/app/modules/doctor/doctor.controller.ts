@@ -43,8 +43,8 @@ const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
 const updateIntoDB = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const payload = req.body;
-  const { specialties, ...doctorData } = payload;
-  const result = await DoctorService.updateIntoDB(id, doctorData, specialties);
+  const { ...doctorData } = payload;
+  const result = await DoctorService.updateIntoDB(id, doctorData);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
