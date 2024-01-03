@@ -40,20 +40,19 @@ const create = z.object({
 
 const update = z.object({
   body: z.object({
-    studentId: z.string().optional(),
-    firstName: z.string().optional(),
-    lastName: z.string().optional(),
-    middleName: z.string().optional(),
-    profileImage: z.string().optional(),
-    email: z.string().optional(),
-    contactNo: z.string().optional(),
+    name: z.string().optional(),
+    profilePhoto: z.string().optional(),
+    contactNumber: z.string().optional(),
+    registrationNumber: z.string().optional(),
+    experience: z.number().optional(),
     gender: z.string().optional(),
-    bloodGroup: z.string().optional(),
-    academicSemesterId: z.string().optional(),
-    academicDepartmentId: z.string().optional(),
-    academicFacultyId: z.string().optional(),
-  }),
+    apointmentFee: z.number().optional(),
+    qualification: z.string().optional(),
+    currentWorkingPlace: z.string().optional(),
+    designation: z.string().optional(),
+  })
 });
+
 
 export const DoctorValidation = {
   create,
