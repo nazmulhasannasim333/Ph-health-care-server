@@ -41,6 +41,7 @@ model Doctor {
   currentWorkingPlace String
   designation         String
   specialties         DoctorSpecialties[]
+  isDeleted           Boolean  @default(false)
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
   user                User     @relation(references: [email], fields: [email])
@@ -132,6 +133,7 @@ enum UserStatus {
   BLOCKED
   ACTIVE
   PENDING
+  DELETED
 }
 
 enum Gender {

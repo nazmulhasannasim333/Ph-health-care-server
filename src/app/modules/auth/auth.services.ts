@@ -2,7 +2,6 @@ import bcrypt from 'bcrypt';
 import httpStatus from 'http-status';
 import { JwtPayload, Secret } from 'jsonwebtoken';
 import config from '../../../config';
-import { ENUM_USER_ROLE } from '../../../enums/user';
 import ApiError from '../../../errors/ApiError';
 import { jwtHelpers } from '../../../helpers/jwtHelpers';
 
@@ -16,12 +15,16 @@ import prisma from '../../../shared/prisma';
 import { AuthUtils } from './auth.utils';
 import { hashedPassword } from '../../../helpers/hashPasswordHelper';
 import { sendEmail } from './sendResetMail';
+import { UserStatus } from '@prisma/client';
 
 const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
     const { email, password } = payload;
 
     const isUserExist = await prisma.user.findUnique({
-        where: { email }
+        where: {
+            email,
+            status: UserStatus.ACTIVE
+        }
     });
 
     if (!isUserExist) {
@@ -72,7 +75,8 @@ const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
 
     const isUserExist = await prisma.user.findUnique({
         where: {
-            id: userId
+            id: userId,
+            status: UserStatus.ACTIVE
         }
     });
     if (!isUserExist) {
@@ -101,7 +105,8 @@ const changePassword = async (
 
     const isUserExist = await prisma.user.findUnique({
         where: {
-            id: user?.userId
+            id: user?.userId,
+            status: UserStatus.ACTIVE
         }
     });
 
@@ -134,7 +139,8 @@ const forgotPass = async (email: string) => {
 
     const isUserExist = await prisma.user.findUnique({
         where: {
-            email
+            email,
+            status: UserStatus.ACTIVE
         }
     });
 
@@ -161,7 +167,8 @@ const resetPassword = async (payload: { id: string, newPassword: string }, token
 
     const isUserExist = await prisma.user.findUnique({
         where: {
-            id: payload.id
+            id: payload.id,
+            status: UserStatus.ACTIVE
         }
     })
 

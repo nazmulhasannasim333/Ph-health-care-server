@@ -104,6 +104,16 @@
             "date": 1703516733797,
             "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2023-25-12-21-success.log",
             "hash": "8084e498d5db3b368f0a005aaefa31a588cbcfa0ebbf3ce11be06ddd31ab5012"
+        },
+        {
+            "date": 1704285708593,
+            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-03-01-06-success.log",
+            "hash": "88c9302a14cee9d8a3a016221e20b634908cbc0df790c8c5e21f1c60ab841270"
+        },
+        {
+            "date": 1704287837748,
+            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-03-01-07-success.log",
+            "hash": "31f7513b99af8bd1fe582a127a71f9af364742757d5783847e835fa382499939"
         }
     ],
     "hashType": "sha256"
