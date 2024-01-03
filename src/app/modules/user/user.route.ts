@@ -11,6 +11,11 @@ router.post(
   UserController.createDoctor,
 );
 router.post(
+  '/create-admin',
+  validateRequest(UserValidation.createAdmin),
+  UserController.createAdmin,
+);
+router.post(
   '/create-patient',
   validateRequest(UserValidation.createPatient),
   UserController.createPatient,

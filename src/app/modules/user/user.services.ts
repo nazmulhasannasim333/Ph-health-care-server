@@ -1,4 +1,4 @@
-import { Doctor, Patient, UserRole, UserStatus } from '@prisma/client';
+import { Admin, Doctor, Patient, UserRole, UserStatus } from '@prisma/client';
 import prisma from '../../../shared/prisma';
 import ApiError from '../../../errors/ApiError';
 import httpStatus from 'http-status';
@@ -20,6 +20,26 @@ const createDoctor = async (doctor: Doctor, userData: any): Promise<Doctor> => {
     });
 
     return newDoctor;
+  });
+
+  return result;
+};
+const createAdmin = async (admin: Admin, userData: any): Promise<Admin> => {
+  const hashPassword = await hashedPassword(userData.password);
+  const result = await prisma.$transaction(async transactionClient => {
+    const newUser = await transactionClient.user.create({
+      data: {
+        email: admin.email,
+        password: hashPassword,
+        pushNotificationToken: userData.pushNotificationToken,
+        role: UserRole.ADMIN,
+      },
+    });
+    const newAdmin = await transactionClient.admin.create({
+      data: admin,
+    });
+
+    return newAdmin;
   });
 
   return result;
@@ -71,6 +91,7 @@ const changeProfileStatus = async (userId: string, status: UserStatus) => {
 
 export const UserServices = {
   createDoctor,
+  createAdmin,
   createPatient,
   changeProfileStatus,
 };

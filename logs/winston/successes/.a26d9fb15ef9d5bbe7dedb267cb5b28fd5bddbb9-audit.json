@@ -6,11 +6,6 @@
     "auditLog": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\.a26d9fb15ef9d5bbe7dedb267cb5b28fd5bddbb9-audit.json",
     "files": [
         {
-            "date": 1703086163944,
-            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2023-20-12-21-success.log",
-            "hash": "07d53447ab67645a5e03386d244e46dae2403560c3ada381a8b3a1bd90ebd256"
-        },
-        {
             "date": 1703092811050,
             "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2023-20-12-23-success.log",
             "hash": "2feee09068a43b571e0a8a5d1c48bcb029614e975ebcb3a2b38d716c90d64086"
@@ -114,6 +109,11 @@
             "date": 1704287837748,
             "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-03-01-07-success.log",
             "hash": "31f7513b99af8bd1fe582a127a71f9af364742757d5783847e835fa382499939"
+        },
+        {
+            "date": 1704302230329,
+            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-03-01-11-success.log",
+            "hash": "5bf6ed755c5648cc6278f84b7a1d423a7d9dc5c446ed4c52bce520cf2ac878a7"
         }
     ],
     "hashType": "sha256"
