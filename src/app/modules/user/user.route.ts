@@ -5,18 +5,21 @@ import { UserValidation } from './user.validations';
 
 const router = express.Router();
 
-
 router.post(
-    '/create-doctor',
-    validateRequest(UserValidation.createDoctor),
-    UserController.createDoctor
+  '/create-doctor',
+  validateRequest(UserValidation.createDoctor),
+  UserController.createDoctor,
+);
+router.post(
+  '/create-patient',
+  validateRequest(UserValidation.createPatient),
+  UserController.createPatient,
 );
 
 router.patch(
-    '/:id/status',
-    validateRequest(UserValidation.updateStatus),
-    UserController.changeProfileStatus
-)
-
+  '/:id/status',
+  validateRequest(UserValidation.updateStatus),
+  UserController.changeProfileStatus,
+);
 
 export const userRoutes = router;

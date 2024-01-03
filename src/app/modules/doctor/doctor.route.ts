@@ -18,7 +18,7 @@ router.get('/:id', DoctorController.getByIdFromDB);
 router.patch(
   '/:id',
   validateRequest(DoctorValidation.update),
-  DoctorController.updateIntoDB
+  DoctorController.updateIntoDB,
 );
 
 router.delete('/:id', DoctorController.deleteFromDB);

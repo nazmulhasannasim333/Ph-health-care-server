@@ -1,12 +1,4 @@
 -- CreateTable
-CREATE TABLE "specialties" (
-    "id" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-
-    CONSTRAINT "specialties_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "doctor_specialties" (
     "specialtiesId" TEXT NOT NULL,
     "doctorId" TEXT NOT NULL,

@@ -10,11 +10,6 @@ router.post(
   validateRequest(SpecialtiesValidation.create),
   SpecialtiesController.insertIntoDB,
 );
-router.post(
-  '/doctor-specialties',
-  validateRequest(SpecialtiesValidation.doctorSpecialities),
-  SpecialtiesController.addDoctorSpecialities,
-);
 router.delete('/:id', SpecialtiesController.deleteFromDB);
 
 export const SpecialtiesRoutes = router;

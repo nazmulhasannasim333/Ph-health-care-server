@@ -50,9 +50,8 @@ const update = z.object({
     qualification: z.string().optional(),
     currentWorkingPlace: z.string().optional(),
     designation: z.string().optional(),
-  })
+  }),
 });
-
 
 export const DoctorValidation = {
   create,
