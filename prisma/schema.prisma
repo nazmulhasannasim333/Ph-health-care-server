@@ -20,9 +20,9 @@ model User {
   status                UserStatus @default(PENDING)
   createdAt             DateTime   @default(now())
   updatedAt             DateTime   @updatedAt
-  Doctor                Doctor?
-  Patient               Patient?
-  Admin                 Admin?
+  doctor                Doctor?
+  patient               Patient?
+  admin                 Admin?
 
   @@map("users")
 }
