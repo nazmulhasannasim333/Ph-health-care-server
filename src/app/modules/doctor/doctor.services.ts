@@ -165,13 +165,24 @@ const updateIntoDB = async (
 };
 
 const deleteFromDB = async (id: string): Promise<Doctor> => {
-  // const result = await prisma.doctor.delete({
-  //   where: {
-  //     id,
-  //   },
-  // });
-  // return result;
+  return await prisma.$transaction(async transactionClient => {
+    const deleteDoctor = await transactionClient.doctor.delete({
+      where: {
+        id,
+      },
+    });
 
+    await transactionClient.user.delete({
+      where: {
+        email: deleteDoctor.email,
+      },
+    });
+
+    return deleteDoctor;
+  });
+};
+
+const softDelete = async (id: string): Promise<Doctor> => {
   return await prisma.$transaction(async transactionClient => {
     const deleteDoctor = await transactionClient.doctor.update({
       where: { id },
@@ -199,4 +210,5 @@ export const DoctorService = {
   getByIdFromDB,
   updateIntoDB,
   deleteFromDB,
+  softDelete,
 };

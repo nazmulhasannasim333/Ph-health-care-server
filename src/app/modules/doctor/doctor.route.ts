@@ -22,5 +22,6 @@ router.patch(
 );
 
 router.delete('/:id', DoctorController.deleteFromDB);
+router.delete('/soft/:id', DoctorController.softDelete);
 
 export const DoctorRoutes = router;

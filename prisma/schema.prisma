@@ -76,6 +76,7 @@ model Patient {
   profilePhoto     String?
   contactNumber    String?
   address          String?
+  isDeleted        Boolean           @default(false)
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
   medicalReport    MedicalReport[]
@@ -136,6 +137,7 @@ model Admin {
   bloodGroup    BloodGroup?
   weight        String?
   maritalStatus MaritalStatus?
+  isDeleted     Boolean        @default(false)
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
 
