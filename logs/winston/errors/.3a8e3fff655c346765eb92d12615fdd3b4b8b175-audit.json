@@ -54,6 +54,11 @@
             "date": 1704522316367,
             "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-06-01-12-error.log",
             "hash": "cec693ef54a8b00627493ec9bdafd14dbcafe72937ca493272e297e10796c81b"
+        },
+        {
+            "date": 1704531728334,
+            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-06-01-15-error.log",
+            "hash": "687e04ba505f426e5db3f0117860c1e00c1ac7b6ab7f9457809c88c35bc5d0a0"
         }
     ],
     "hashType": "sha256"

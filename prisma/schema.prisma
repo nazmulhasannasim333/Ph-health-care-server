@@ -17,12 +17,12 @@ model User {
   role                  UserRole
   needPasswordChange    Boolean    @default(true)
   pushNotificationToken String?
-  status                UserStatus @default(PENDING)
+  status                UserStatus @default(ACTIVE)
   createdAt             DateTime   @default(now())
   updatedAt             DateTime   @updatedAt
-  Doctor                Doctor?
-  Patient               Patient?
-  Admin                 Admin?
+  doctor                Doctor?
+  patient               Patient?
+  admin                 Admin?
 
   @@map("users")
 }
