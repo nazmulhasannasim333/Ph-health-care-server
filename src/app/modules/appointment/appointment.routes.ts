@@ -17,7 +17,7 @@ router.post(
 
 router.get(
     '/my-appointments',
-    auth(ENUM_USER_ROLE.PATIENT),
+    auth(ENUM_USER_ROLE.PATIENT, ENUM_USER_ROLE.DOCTOR),
     AppointmentController.getMyAppointment
 )
 

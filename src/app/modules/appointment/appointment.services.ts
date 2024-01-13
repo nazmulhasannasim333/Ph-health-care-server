@@ -1,4 +1,4 @@
-import { Appointment, Prisma } from '@prisma/client';
+import { Appointment, Prisma, UserRole } from '@prisma/client';
 import prisma from '../../../shared/prisma';
 import { IAuthUser, IGenericResponse } from '../../../interfaces/common';
 import { v4 as uuidv4 } from 'uuid';
@@ -48,16 +48,28 @@ const getMyAppointment = async (
     options: IPaginationOptions,
     authUser: IAuthUser
 ): Promise<IGenericResponse<Appointment[]>> => {
+    console.log(authUser)
     const { limit, page, skip } = paginationHelpers.calculatePagination(options);
     const andConditions = [];
 
-    andConditions.push(
-        {
-            patient: {
-                email: authUser?.email
+    if (authUser?.role === UserRole.PATIENT) {
+        andConditions.push(
+            {
+                patient: {
+                    email: authUser?.email
+                }
             }
-        }
-    )
+        )
+    }
+    else {
+        andConditions.push(
+            {
+                doctor: {
+                    email: authUser?.email
+                }
+            }
+        )
+    }
     const whereConditions: Prisma.AppointmentWhereInput =
         andConditions.length > 0 ? { AND: andConditions } : {};
 
@@ -71,9 +83,9 @@ const getMyAppointment = async (
                 : {
                     createdAt: 'desc',
                 },
-        include: {
-            doctor: true
-        }
+        include: authUser?.role === UserRole.PATIENT
+            ? { doctor: true }
+            : { patient: true }
     });
     const total = await prisma.appointment.count({
         where: whereConditions
