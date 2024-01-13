@@ -1,7 +1,19 @@
-export const adminSearchableFields: string[] = ['name', 'email', 'contactNo'];
+export const appointmentSearchableFields: string[] = ['status', 'paymentStatus'];
 
-export const adminFilterableFields: string[] = [
+export const appointmentFilterableFields: string[] = [
     'searchTerm',
-    'email',
-    'contactNo',
+    'status',
+    'paymentStatus',
+    'patientEmail',
+    'doctorEmail'
 ];
+
+export const appointmentRelationalFields: string[] = [
+    'patientEmail',
+    'doctorEmail'
+];
+
+export const appointmentRelationalFieldsMapper: { [key: string]: string } = {
+    patientEmail: 'patient',
+    doctorEmail: 'doctor'
+};

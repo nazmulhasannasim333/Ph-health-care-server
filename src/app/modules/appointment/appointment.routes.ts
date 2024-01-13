@@ -8,6 +8,16 @@ import { AppointmentValidation } from './appointment.validation';
 
 const router = express.Router();
 
+router.get(
+    '/',
+    AppointmentController.getAllFromDB
+)
+router.get(
+    '/my-appointments',
+    auth(ENUM_USER_ROLE.PATIENT, ENUM_USER_ROLE.DOCTOR),
+    AppointmentController.getMyAppointment
+)
+
 router.post(
     '/',
     auth(ENUM_USER_ROLE.PATIENT),
@@ -15,10 +25,6 @@ router.post(
     AppointmentController.createAppointment
 );
 
-router.get(
-    '/my-appointments',
-    auth(ENUM_USER_ROLE.PATIENT, ENUM_USER_ROLE.DOCTOR),
-    AppointmentController.getMyAppointment
-)
+
 
 export const AppointmentRoutes = router;
