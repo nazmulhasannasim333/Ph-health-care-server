@@ -46,6 +46,7 @@ model Doctor {
   createdAt           DateTime            @default(now())
   updatedAt           DateTime            @updatedAt
   user                User                @relation(references: [email], fields: [email])
+  appointments        Appointment[]
 
   @@map("doctors")
 }
@@ -82,6 +83,7 @@ model Patient {
   medicalReport    MedicalReport[]
   patientHelthData PatientHelthData?
   user             User              @relation(references: [email], fields: [email])
+  appointments     Appointment[]
 
   @@map("patients")
 }
@@ -146,6 +148,38 @@ model Admin {
   @@map("admins")
 }
 
+model Appointment {
+  id        String  @id @default(uuid())
+  patientId String
+  patient   Patient @relation(fields: [patientId], references: [id])
+
+  doctorId String
+  doctor   Doctor @relation(fields: [doctorId], references: [id])
+
+  doctorScheduleId String
+  videoCallingId   String
+  status           AppointmentStatus @default(SCHEDULED)
+  paymentStatus    PaymentStatus     @default(UNPAID)
+  notes            String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  payment          Payment[]
+
+  @@map("appointments")
+}
+
+model Payment {
+  id                 String        @id @default(uuid())
+  appointmentId      String
+  appointment        Appointment   @relation(fields: [appointmentId], references: [id])
+  amount             Float         @default(0.00)
+  transactionId      String
+  status             PaymentStatus @default(UNPAID)
+  paymentGatewayData Json?
+
+  @@map("payments")
+}
+
 enum UserRole {
   ADMIN
   DOCTOR
@@ -178,4 +212,16 @@ enum BloodGroup {
   O_NEGATIVE
   AB_POSITIVE
   AB_NEGATIVE
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  INPROGRESS
+  COMPLETED
+  CANCELED
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
 }

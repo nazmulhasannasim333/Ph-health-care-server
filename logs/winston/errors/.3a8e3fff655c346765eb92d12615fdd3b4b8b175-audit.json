@@ -6,41 +6,6 @@
     "auditLog": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/.3a8e3fff655c346765eb92d12615fdd3b4b8b175-audit.json",
     "files": [
         {
-            "date": 1703410086932,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2023-24-12-15-error.log",
-            "hash": "44f8d3bfe2070419553f2cbd64f5ffb12d5513bbc5fb2b55045c8f4c35fd9871"
-        },
-        {
-            "date": 1703413950250,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2023-24-12-16-error.log",
-            "hash": "4a561d5594693791c5920893e95894c83d2d2c1da38d1a744991ba0791ee2403"
-        },
-        {
-            "date": 1703415615683,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2023-24-12-17-error.log",
-            "hash": "65131580aa89126c769a78e27728a587b84b8d50a00b89ac481c01bff3919494"
-        },
-        {
-            "date": 1703423056075,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2023-24-12-19-error.log",
-            "hash": "dc024cba892a3bcdd5d2d6bb59fb6bb69d86e3730ed771f06efca21ae5784303"
-        },
-        {
-            "date": 1703426755816,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2023-24-12-20-error.log",
-            "hash": "949cee05f20e69b2a4ac452f161d7c29a60a5be41125ff8ba8e5d4dcbc3d448d"
-        },
-        {
-            "date": 1703430016571,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2023-24-12-21-error.log",
-            "hash": "cd415357b6b37fa34a75c490cfbfe4d68e8be7b4573adbcfc8e67bd6cfb029bc"
-        },
-        {
-            "date": 1703655798714,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2023-27-12-11-error.log",
-            "hash": "8cd6a01c78f9a60540c740e76e0e0ddc2ee75e952def1f7f72a93f0e72ac2b9d"
-        },
-        {
             "date": 1704263453861,
             "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-03-01-12-error.log",
             "hash": "245f434cd6f407cb1850de9e58634ef4f26a0706e0492813804adef1cc5c3960"
@@ -59,6 +24,21 @@
             "date": 1704531728334,
             "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-06-01-15-error.log",
             "hash": "687e04ba505f426e5db3f0117860c1e00c1ac7b6ab7f9457809c88c35bc5d0a0"
+        },
+        {
+            "date": 1705141818752,
+            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-13-01-16-error.log",
+            "hash": "f964966444d8532cacb268ce0232d6894478db7d7040627d93aa98d7e52d93bb"
+        },
+        {
+            "date": 1705145368028,
+            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-13-01-17-error.log",
+            "hash": "2491fbd6790827171d3f44be606343cf9c1d686a0c898dfe1f9fc10b1f65b53b"
+        },
+        {
+            "date": 1705147258715,
+            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-13-01-18-error.log",
+            "hash": "bda91c39b26611145d5e44c391fafee9ab2fcf7082c525954ee60015db32e60e"
         }
     ],
     "hashType": "sha256"
