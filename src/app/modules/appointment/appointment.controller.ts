@@ -4,6 +4,7 @@ import sendResponse from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
 import { AppointmentServices } from './appointment.services';
 import { IAuthUser } from '../../../interfaces/common';
+import pick from '../../../shared/pick';
 
 // const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
 //     const filters = pick(req.query, adminFilterableFields);
@@ -72,6 +73,21 @@ const createAppointment = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+const getMyAppointment = catchAsync(async (req: Request, res: Response) => {
+    const filters = {}
+    const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
+    const user = req.user;
+    const result = await AppointmentServices.getMyAppointment(filters, options, user as IAuthUser);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Appointment retrieval successfully',
+        meta: result.meta,
+        data: result.data,
+    });
+});
+
 export const AppointmentController = {
-    createAppointment
+    createAppointment,
+    getMyAppointment
 };

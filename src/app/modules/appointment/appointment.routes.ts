@@ -13,6 +13,12 @@ router.post(
     auth(ENUM_USER_ROLE.PATIENT),
     validateRequest(AppointmentValidation.createAppointment),
     AppointmentController.createAppointment
+);
+
+router.get(
+    '/my-appointments',
+    auth(ENUM_USER_ROLE.PATIENT),
+    AppointmentController.getMyAppointment
 )
 
 export const AppointmentRoutes = router;
