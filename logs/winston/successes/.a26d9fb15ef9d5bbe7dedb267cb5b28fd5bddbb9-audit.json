@@ -6,74 +6,9 @@
     "auditLog": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\.a26d9fb15ef9d5bbe7dedb267cb5b28fd5bddbb9-audit.json",
     "files": [
         {
-            "date": 1704285708593,
-            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-03-01-06-success.log",
-            "hash": "88c9302a14cee9d8a3a016221e20b634908cbc0df790c8c5e21f1c60ab841270"
-        },
-        {
-            "date": 1704287837748,
-            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-03-01-07-success.log",
-            "hash": "31f7513b99af8bd1fe582a127a71f9af364742757d5783847e835fa382499939"
-        },
-        {
-            "date": 1704302230329,
-            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-03-01-11-success.log",
-            "hash": "5bf6ed755c5648cc6278f84b7a1d423a7d9dc5c446ed4c52bce520cf2ac878a7"
-        },
-        {
-            "date": 1704530001777,
-            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-06-01-03-success.log",
-            "hash": "5752f8014985adb27fe5255b8ec0529e74ca205f7f4d20a67d9e0b753949038b"
-        },
-        {
-            "date": 1704534748244,
-            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-06-01-04-success.log",
-            "hash": "65b391df6b116af6786bcb053088be654415ab6bc288f96147a94790b2fdd748"
-        },
-        {
-            "date": 1704535310982,
-            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-06-01-05-success.log",
-            "hash": "ccd8a76c09bff9702b350146a8186d5ec4a46a33acc759962423c829cabc9637"
-        },
-        {
-            "date": 1705138522441,
-            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-13-01-04-success.log",
-            "hash": "288eb58e1cef60c116e0ea4873c395f7e9eeea9d93f1271e05ef0058f7382ffe"
-        },
-        {
-            "date": 1705141876087,
-            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-13-01-05-success.log",
-            "hash": "b322055e58f454c7d4aefd508f44c0420cf96163eb7a2673ec2ec839f2b5d731"
-        },
-        {
-            "date": 1705142402459,
-            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-13-01-16-success.log",
-            "hash": "18ce250a198581342dfbed5624c1ce5fc6553aad1e53d665f4ad91113a7cb4ae"
-        },
-        {
-            "date": 1705143604519,
-            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-13-01-17-success.log",
-            "hash": "0aed42142b74364ea9c26b780561a8c7f9d46680b5bd022b73aad76a6292aac6"
-        },
-        {
-            "date": 1705147432302,
-            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-13-01-18-success.log",
-            "hash": "a73aad7367817a358d7d4e221866e9cf4efbdef36716c395ec00dbb5feb4565c"
-        },
-        {
-            "date": 1705164133705,
-            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-13-01-22-success.log",
-            "hash": "072c6c2cdbd2976ff1e5c940b69ab274cbe7f35e53d88187795c1c5f311cf775"
-        },
-        {
-            "date": 1705168937442,
-            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-14-01-00-success.log",
-            "hash": "8d3139e5a4ab88fc5fb369a737aa1d71ebae834c2d2e4c9d50858d09ac21b0ef"
-        },
-        {
-            "date": 1705172406344,
+            "date": 1705174349689,
             "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\successes\\phu-2024-14-01-01-success.log",
-            "hash": "559b5269b8cc736ecebb3e75f1f16fb290aab6eb35d0b148a4e93b9fa5b134ee"
+            "hash": "14ed136a5b3957e3730137c363362fc81d580db49ced6388f8000de8ba6bed56"
         }
     ],
     "hashType": "sha256"
