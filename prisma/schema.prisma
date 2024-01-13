@@ -46,6 +46,7 @@ model Doctor {
   createdAt           DateTime            @default(now())
   updatedAt           DateTime            @updatedAt
   user                User                @relation(references: [email], fields: [email])
+  schedules           DoctorSchedule[]
 
   @@map("doctors")
 }
@@ -145,6 +146,36 @@ model Admin {
 
   @@map("admins")
 }
+
+model Schedule {
+  id              String  @id @default(uuid())
+  startDate       DateTime
+  endDate         DateTime
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  doctorSchedules DoctorSchedule[]
+
+  @@map("schedule")
+}
+
+model DoctorSchedule {
+  id          String  @id @default(uuid())
+  doctorId    String
+  doctor      Doctor @relation(fields: [doctorId], references: [id])
+
+
+  scheduleId  String
+  schedule    Schedule @relation(fields: [scheduleId], references: [id])
+
+  isBooked    Boolean        @default(false)
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("doctorSchedule")
+}
+
 
 enum UserRole {
   ADMIN
