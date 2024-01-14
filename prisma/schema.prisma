@@ -171,8 +171,9 @@ model DoctorSchedule {
 
   isBooked Boolean @default(false)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  appointment Appointment?
 
   @@map("doctorSchedule")
 }
@@ -185,21 +186,23 @@ model Appointment {
   doctorId String
   doctor   Doctor @relation(fields: [doctorId], references: [id])
 
-  doctorScheduleId String
-  videoCallingId   String
-  status           AppointmentStatus @default(SCHEDULED)
-  paymentStatus    PaymentStatus     @default(UNPAID)
-  notes            String?
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
-  payment          Payment[]
+  doctorScheduleId String         @unique
+  doctorSchedule   DoctorSchedule @relation(fields: [doctorScheduleId], references: [id])
+
+  videoCallingId String
+  status         AppointmentStatus @default(SCHEDULED)
+  paymentStatus  PaymentStatus     @default(UNPAID)
+  notes          String?
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  payment        Payment?
 
   @@map("appointments")
 }
 
 model Payment {
   id                 String        @id @default(uuid())
-  appointmentId      String
+  appointmentId      String        @unique
   appointment        Appointment   @relation(fields: [appointmentId], references: [id])
   amount             Float         @default(0.00)
   transactionId      String
