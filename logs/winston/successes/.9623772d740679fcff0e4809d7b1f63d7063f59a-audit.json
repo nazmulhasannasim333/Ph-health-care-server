@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/successes/.9623772d740679fcff0e4809d7b1f63d7063f59a-audit.json",
+    "files": [
+        {
+            "date": 1705238282384,
+            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/successes/phu-2024-14-01-19-success.log",
+            "hash": "5bab05499ec57e477433c78cc993d65bbf82bb6acdf395e3aa4df1f6e9d91f55"
+        }
+    ],
+    "hashType": "sha256"
+}
