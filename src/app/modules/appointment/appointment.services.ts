@@ -7,6 +7,7 @@ import httpStatus from 'http-status';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import { appointmentRelationalFields, appointmentRelationalFieldsMapper, appointmentSearchableFields } from './appointment.constants';
+import { generateTransactionId } from '../payment/payment.utils';
 
 const createAppointment = async (data: Partial<Appointment>, authUser: IAuthUser) => {
     const { doctorId, doctorScheduleId } = data;
@@ -50,6 +51,10 @@ const createAppointment = async (data: Partial<Appointment>, authUser: IAuthUser
                 doctorId: isDoctorExists.id,
                 doctorScheduleId: isExistsDoctorSchedule.id,
                 videoCallingId
+            },
+            include: {
+                doctor: true,
+                doctorSchedule: true
             }
         });
 
@@ -62,8 +67,18 @@ const createAppointment = async (data: Partial<Appointment>, authUser: IAuthUser
             }
         });
 
+        const transactionId: string = generateTransactionId(result.id);
+
+        await transactionClient.payment.create({
+            data: {
+                appointmentId: result.id,
+                amount: result.doctor.apointmentFee,
+                transactionId
+            }
+        })
+
         return result;
-    })
+    });
 };
 
 const getMyAppointment = async (

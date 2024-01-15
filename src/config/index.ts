@@ -17,5 +17,15 @@ export default {
   reset_link: process.env.RESET_LINK,
   email: process.env.EMAIL,
   app_pass: process.env.APP_PASS,
-  bycrypt_salt_rounds: process.env.SALT_ROUND
+  bycrypt_salt_rounds: process.env.SALT_ROUND,
+  ssl: {
+    sslPaymentUrl: process.env.SSL_PAYMENT_URL,
+    validationUrl: process.env.VALIDATION_URL,
+    storeId: process.env.STORE_ID,
+    storePass: process.env.STORE_PASSWORD,
+    successUrl: process.env.SUCCESS_URL,
+    cancelUrl: process.env.CANCEL_URL,
+    failUrl: process.env.FAIL_URL
+  }
+
 };
