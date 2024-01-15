@@ -48,6 +48,7 @@ const insertIntoDB = async (data: ISchedule): Promise<Schedule[]> => {
     currentDate.setDate(currentDate.getDate() + 1);
   }
 
+  console.log(schedules)
   return schedules;
 };
 
@@ -94,8 +95,8 @@ const getAllFromDB = async (
       options.sortBy && options.sortOrder
         ? { [options.sortBy]: options.sortOrder }
         : {
-            createdAt: 'desc',
-          },
+          createdAt: 'desc',
+        },
   });
   const total = await prisma.schedule.count({
     where: whereConditions,

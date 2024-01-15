@@ -30,18 +30,40 @@ const createAppointment = async (data: Partial<Appointment>, authUser: IAuthUser
         throw new ApiError(httpStatus.BAD_REQUEST, "Patient doesn't exists!")
     };
 
+    const isExistsDoctorSchedule = await prisma.doctorSchedule.findFirst({
+        where: {
+            id: doctorScheduleId,
+            isBooked: false
+        }
+    });
+
+    if (!isExistsDoctorSchedule) {
+        throw new ApiError(httpStatus.BAD_REQUEST, "Doctor Schedule is not available!")
+    }
+
     const videoCallingId: string = uuidv4()
 
-    const result = await prisma.appointment.create({
-        data: {
-            patientId: isPatientExists.id,
-            doctorId: isDoctorExists.id,
-            doctorScheduleId: "VIDEO CALLING ID",
-            videoCallingId
-        }
-    })
+    return await prisma.$transaction(async (transactionClient) => {
+        const result = await transactionClient.appointment.create({
+            data: {
+                patientId: isPatientExists.id,
+                doctorId: isDoctorExists.id,
+                doctorScheduleId: isExistsDoctorSchedule.id,
+                videoCallingId
+            }
+        });
 
-    return result;
+        await transactionClient.doctorSchedule.update({
+            where: {
+                id: isExistsDoctorSchedule.id
+            },
+            data: {
+                isBooked: true
+            }
+        });
+
+        return result;
+    })
 };
 
 const getMyAppointment = async (
