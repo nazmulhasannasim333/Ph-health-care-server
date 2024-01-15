@@ -34,8 +34,53 @@ const initPayment = async (data: any, appointmentId: string) => {
     return {
         paymentUrl: paymentSession.GatewayPageURL
     };
+};
+
+const validate = async (payload: any) => {
+    if (!payload || !payload?.status || payload?.status !== 'VALID') {
+        return {
+            massage: 'Invalid Payment!'
+        }
+    }
+    const result = await sslServices.validate(payload);
+
+    if (result?.status !== 'VALID') {
+        return {
+            massage: 'Payment failed'
+        }
+    }
+    const { tran_id } = result;
+
+    // Uncomment when validate in locally
+    // const { tran_id } = payload; 
+
+    await prisma.$transaction(async (transactionClient) => {
+        const paymentData = await transactionClient.payment.update({
+            where: {
+                transactionId: tran_id
+            },
+            data: {
+                status: PaymentStatus.PAID,
+                paymentGatewayData: payload
+            }
+        });
+
+        await transactionClient.appointment.update({
+            where: {
+                id: paymentData.appointmentId
+            },
+            data: {
+                paymentStatus: PaymentStatus.PAID
+            }
+        })
+    });
+
+    return {
+        massage: 'Payment Success'
+    };
 }
 
 export const PaymentService = {
-    initPayment
+    initPayment,
+    validate
 }

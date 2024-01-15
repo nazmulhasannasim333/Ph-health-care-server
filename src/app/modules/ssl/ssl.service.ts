@@ -16,6 +16,7 @@ const initPayment = async (paymentData: PaymentInfo) => {
             success_url: config.ssl.successUrl,
             fail_url: config.ssl.failUrl,
             cancel_url: config.ssl.cancelUrl,
+            ipn_url: 'http://localhost:3000/api/v1/payment/ipn',
             shipping_method: 'N/A',
             product_name: 'Doctor Appoinment',
             product_category: 'Appointment',
@@ -50,8 +51,23 @@ const initPayment = async (paymentData: PaymentInfo) => {
     catch (err) {
         throw new ApiError(httpStatus.BAD_REQUEST, "Payment error")
     }
+};
+
+const validate = async (data: any) => {
+    try {
+        const response = await axios({
+            method: 'GET',
+            url: `${config.ssl.validationUrl}?val_id=${data.val_id}&store_id=${config.ssl.storeId}&store_passwd=${config.ssl.storePass}&format=json`
+        })
+        console.log(response);
+        return response.data;
+    }
+    catch (err) {
+        throw new ApiError(httpStatus.BAD_REQUEST, "Payment error")
+    }
 }
 
 export const sslServices = {
-    initPayment
+    initPayment,
+    validate
 }
