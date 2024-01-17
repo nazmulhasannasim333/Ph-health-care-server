@@ -1,4 +1,4 @@
-import { Appointment, Prisma, UserRole } from '@prisma/client';
+import { Appointment, PaymentStatus, Prisma, UserRole } from '@prisma/client';
 import prisma from '../../../shared/prisma';
 import { IAuthUser, IGenericResponse } from '../../../interfaces/common';
 import { v4 as uuidv4 } from 'uuid';
@@ -211,9 +211,53 @@ const getAllFromDB = async (
     };
 };
 
+const cancelUnpaidAppointments = async () => {
+    const thirtyMinutesAgo = new Date(Date.now() - 1 * 60 * 1000);
+    const uppaidAppointments = await prisma.appointment.findMany({
+        where: {
+            paymentStatus: PaymentStatus.UNPAID,
+            createdAt: {
+                lte: thirtyMinutesAgo
+            }
+        }
+    });
+    const appointmentIdsToCancel = uppaidAppointments.map(appointment => appointment.id);
+    const scheduleIdsToCancel = uppaidAppointments.map(appointment => appointment.doctorScheduleId);
+
+    await prisma.$transaction(async (transactionClient) => {
+        await transactionClient.payment.deleteMany({
+            where: {
+                appointmentId: {
+                    in: appointmentIdsToCancel
+                }
+            }
+        })
+
+        await transactionClient.appointment.deleteMany({
+            where: {
+                id: {
+                    in: appointmentIdsToCancel
+                }
+            }
+        });
+
+        await transactionClient.doctorSchedule.updateMany({
+            where: {
+                id: {
+                    in: scheduleIdsToCancel
+                }
+            },
+            data: {
+                isBooked: false
+            }
+        });
+    })
+};
+
 
 export const AppointmentServices = {
     createAppointment,
     getMyAppointment,
-    getAllFromDB
+    getAllFromDB,
+    cancelUnpaidAppointments
 };
