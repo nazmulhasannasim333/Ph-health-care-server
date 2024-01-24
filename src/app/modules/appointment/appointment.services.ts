@@ -212,7 +212,7 @@ const getAllFromDB = async (
 };
 
 const cancelUnpaidAppointments = async () => {
-    const thirtyMinutesAgo = new Date(Date.now() - 1 * 60 * 1000);
+    const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000);
     const uppaidAppointments = await prisma.appointment.findMany({
         where: {
             paymentStatus: PaymentStatus.UNPAID,
