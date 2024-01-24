@@ -81,6 +81,7 @@ const changeProfileStatus = async (userId: string, status: UserStatus) => {
       id: userId,
     },
   });
+  console.log(isUserExist);
   if (!isUserExist) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'User does not exists!');
   }
