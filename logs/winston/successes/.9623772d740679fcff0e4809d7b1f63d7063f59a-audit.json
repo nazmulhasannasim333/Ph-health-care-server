@@ -6,31 +6,6 @@
     "auditLog": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/successes/.9623772d740679fcff0e4809d7b1f63d7063f59a-audit.json",
     "files": [
         {
-            "date": 1705238282384,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/successes/phu-2024-14-01-19-success.log",
-            "hash": "5bab05499ec57e477433c78cc993d65bbf82bb6acdf395e3aa4df1f6e9d91f55"
-        },
-        {
-            "date": 1705240833993,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/successes/phu-2024-14-01-20-success.log",
-            "hash": "06f1138b0e39fdebd32fe78afc31f79168efe4c5e3d8ee261c3813076c1b7e78"
-        },
-        {
-            "date": 1705302525618,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/successes/phu-2024-15-01-13-success.log",
-            "hash": "715c87a60189184643ee58f6c649d3624c23ba453683eef437a79c36e11c8039"
-        },
-        {
-            "date": 1705312818292,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/successes/phu-2024-15-01-16-success.log",
-            "hash": "d9d7ed6c523ecb85ac6dd0cba38c5020c2d48e31ac92f19bc4a08395d23a4007"
-        },
-        {
-            "date": 1705316647447,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/successes/phu-2024-15-01-17-success.log",
-            "hash": "136091d84ddd2132b7138e59fa27daf6524739c60fc5d23d65a07b68e6f6ef5e"
-        },
-        {
             "date": 1705485066668,
             "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/successes/phu-2024-17-01-15-success.log",
             "hash": "b331e82275d9a87949b993db3eff1a055b2a5234feceec77ec732ae44cfd7d25"
@@ -44,6 +19,11 @@
             "date": 1706098749300,
             "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/successes/phu-2024-24-01-18-success.log",
             "hash": "ab417414be63603b90c63e5a356354562b3ad024725583469088cf4f89b9af45"
+        },
+        {
+            "date": 1706681693361,
+            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/successes/phu-2024-31-01-12-success.log",
+            "hash": "59a291c9282bc6faf0b48c1b0e9140dfb905a1d51fa18aebb3938d6c52bd161f"
         }
     ],
     "hashType": "sha256"
