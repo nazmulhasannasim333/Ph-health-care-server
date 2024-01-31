@@ -41,7 +41,6 @@ const insertIntoDB = async (data: Prescription): Promise<Prescription> => {
     throw new ApiError(httpStatus.BAD_REQUEST, "Patient doesn't exists!");
   }
 
-  console.log(data);
   const result = await prisma.prescription.create({
     data: data,
   });

@@ -19,6 +19,11 @@
             "date": 1705417696637,
             "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\errors\\phu-2024-16-01-21-error.log",
             "hash": "3430fdf608829e8c76120c367530bbfc56a2e2fb1bab8f723362ea0a9d66bd83"
+        },
+        {
+            "date": 1705583959639,
+            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\errors\\phu-2024-18-01-08-error.log",
+            "hash": "2d762cc6b91ea77e0295195a741aa926af0a2eade3d429f26d9a78b4350ec933"
         }
     ],
     "hashType": "sha256"
