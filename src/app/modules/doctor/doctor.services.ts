@@ -65,8 +65,15 @@ const getAllFromDB = async (
       options.sortBy && options.sortOrder
         ? { [options.sortBy]: options.sortOrder }
         : {
-            createdAt: 'desc',
-          },
+          createdAt: 'desc',
+        },
+    include: {
+      review: {
+        select: {
+          rating: true
+        }
+      }
+    }
   });
   const total = await prisma.doctor.count({
     where: whereConditions,

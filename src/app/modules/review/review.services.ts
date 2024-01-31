@@ -1,6 +1,6 @@
 import prisma from '../../../shared/prisma';
 import { IPaginationOptions } from '../../../interfaces/pagination';
-import { IGenericResponse } from '../../../interfaces/common';
+import { IAuthUser, IGenericResponse } from '../../../interfaces/common';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { Prisma, Review } from '@prisma/client';
 import ApiError from '../../../errors/ApiError';
@@ -10,10 +10,13 @@ import {
   reviewRelationalFieldsMapper,
 } from './review.constants';
 
-const insertIntoDB = async (data: Review): Promise<Review> => {
-  const isAppointmentExists = await prisma.appointment.findFirstOrThrow({
+const insertIntoDB = async (data: Review, user: IAuthUser): Promise<Review> => {
+  const isAppointmentExists = await prisma.appointment.findFirst({
     where: {
       id: data.appointmentId,
+      patient: {
+        email: user?.email
+      }
     },
   });
 
@@ -21,28 +24,18 @@ const insertIntoDB = async (data: Review): Promise<Review> => {
     throw new ApiError(httpStatus.BAD_REQUEST, "Appointment doesn't exists!");
   }
 
-  const isDoctorExists = await prisma.doctor.findFirstOrThrow({
-    where: {
-      id: data.doctorId,
-    },
-  });
-
-  if (!isDoctorExists) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "Doctor doesn't exists!");
-  }
-
-  const isPatientExists = await prisma.patient.findFirstOrThrow({
-    where: {
-      id: data.patientId,
-    },
-  });
-
-  if (!isPatientExists) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "Patient doesn't exists!");
-  }
-
   const result = await prisma.review.create({
-    data: data,
+    data: {
+      doctorId: isAppointmentExists.doctorId,
+      patientId: isAppointmentExists.patientId,
+      appointmentId: isAppointmentExists.id,
+      rating: data.rating,
+      comment: data.comment
+    },
+    include: {
+      doctor: true,
+      patient: true
+    }
   });
 
   return result;
@@ -87,8 +80,8 @@ const getAllFromDB = async (
       options.sortBy && options.sortOrder
         ? { [options.sortBy]: options.sortOrder }
         : {
-            createdAt: 'desc',
-          },
+          createdAt: 'desc',
+        },
     include: {
       doctor: true,
       patient: true,
