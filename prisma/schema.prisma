@@ -55,6 +55,7 @@ model Doctor {
 model Specialties {
   id      String              @id @default(uuid())
   title   String
+  icon    String?
   doctors DoctorSpecialties[]
 
   @@map("specialties")

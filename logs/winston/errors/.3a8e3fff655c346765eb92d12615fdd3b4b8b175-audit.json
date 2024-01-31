@@ -6,31 +6,6 @@
     "auditLog": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/.3a8e3fff655c346765eb92d12615fdd3b4b8b175-audit.json",
     "files": [
         {
-            "date": 1705238282385,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-14-01-19-error.log",
-            "hash": "5bfd5c166b9a637165576d0ee6c8273288a3a3d5de4e6d8be27544391da75aba"
-        },
-        {
-            "date": 1705240833995,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-14-01-20-error.log",
-            "hash": "2557dd319cec8d508f23bd11b8e4de80ac4b6fc65b058fb0e2c4949c4767c125"
-        },
-        {
-            "date": 1705302525619,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-15-01-13-error.log",
-            "hash": "46d13c19e0c2c4089964bdef57f8d029efc58bcf3e64cd2800d28f565743350c"
-        },
-        {
-            "date": 1705312818294,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-15-01-16-error.log",
-            "hash": "7e554797fd5903a9a470430147abcbf504a293f24bee20d1aa245434f6a6f46d"
-        },
-        {
-            "date": 1705316647681,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-15-01-17-error.log",
-            "hash": "67a59b327d0ea23ddb3705e1b789b5bef48b0032796393da56fbc09661fb5213"
-        },
-        {
             "date": 1705485066669,
             "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-17-01-15-error.log",
             "hash": "2df5328de917b34fdd54cc3da29ba8ccc1d54786ab5c9951c5b842f833978fc5"
@@ -44,6 +19,11 @@
             "date": 1706098749302,
             "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-24-01-18-error.log",
             "hash": "01aa8be41b040c358c3aab1ea15402b18988fee108b8f6b111d63eaf025a64c9"
+        },
+        {
+            "date": 1706681693364,
+            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-31-01-12-error.log",
+            "hash": "2984ef64de51b6275d36d27fef553881ccd1888971e15e7373daed286d4afa7d"
         }
     ],
     "hashType": "sha256"

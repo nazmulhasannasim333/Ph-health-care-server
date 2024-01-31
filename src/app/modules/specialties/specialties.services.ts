@@ -8,6 +8,10 @@ const insertIntoDB = async (data: Specialties): Promise<Specialties> => {
   return result;
 };
 
+const getAllFromDB = async () => {
+  return await prisma.specialties.findMany();
+}
+
 const deleteFromDB = async (id: string): Promise<Specialties> => {
   const result = await prisma.specialties.delete({
     where: {
@@ -19,5 +23,6 @@ const deleteFromDB = async (id: string): Promise<Specialties> => {
 
 export const SpecialtiesService = {
   insertIntoDB,
+  getAllFromDB,
   deleteFromDB,
 };
