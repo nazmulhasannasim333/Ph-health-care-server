@@ -65,7 +65,7 @@ const getAllFromDB = async (
       options.sortBy && options.sortOrder
         ? { [options.sortBy]: options.sortOrder }
         : {
-          createdAt: 'desc',
+          averageRating: 'desc'
         },
     include: {
       review: {
@@ -211,11 +211,12 @@ const softDelete = async (id: string): Promise<Doctor> => {
   });
 };
 
+
 export const DoctorService = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
   updateIntoDB,
   deleteFromDB,
-  softDelete,
+  softDelete
 };

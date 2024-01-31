@@ -24,21 +24,38 @@ const insertIntoDB = async (data: Review, user: IAuthUser): Promise<Review> => {
     throw new ApiError(httpStatus.BAD_REQUEST, "Appointment doesn't exists!");
   }
 
-  const result = await prisma.review.create({
-    data: {
-      doctorId: isAppointmentExists.doctorId,
-      patientId: isAppointmentExists.patientId,
-      appointmentId: isAppointmentExists.id,
-      rating: data.rating,
-      comment: data.comment
-    },
-    include: {
-      doctor: true,
-      patient: true
-    }
-  });
+  return await prisma.$transaction(async (transactionClient) => {
+    const review = await transactionClient.review.create({
+      data: {
+        doctorId: isAppointmentExists.doctorId,
+        patientId: isAppointmentExists.patientId,
+        appointmentId: isAppointmentExists.id,
+        rating: data.rating,
+        comment: data.comment
+      },
+      include: {
+        doctor: true,
+        patient: true
+      }
+    });
 
-  return result;
+    const averageRating = await transactionClient.review.aggregate({
+      _avg: {
+        rating: true
+      }
+    });
+
+    await transactionClient.doctor.update({
+      where: {
+        id: review.doctorId
+      },
+      data: {
+        averageRating: averageRating._avg.rating as number
+      }
+    })
+
+    return review;
+  })
 };
 
 const getAllFromDB = async (
