@@ -65,8 +65,15 @@ const getAllFromDB = async (
       options.sortBy && options.sortOrder
         ? { [options.sortBy]: options.sortOrder }
         : {
-            createdAt: 'desc',
-          },
+          averageRating: 'desc'
+        },
+    include: {
+      review: {
+        select: {
+          rating: true
+        }
+      }
+    }
   });
   const total = await prisma.doctor.count({
     where: whereConditions,
@@ -204,11 +211,12 @@ const softDelete = async (id: string): Promise<Doctor> => {
   });
 };
 
+
 export const DoctorService = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
   updateIntoDB,
   deleteFromDB,
-  softDelete,
+  softDelete
 };

@@ -5,10 +5,11 @@ import httpStatus from 'http-status';
 import { ReviewService } from './review.services';
 import pick from '../../../shared/pick';
 import { reviewFilterableFields } from './review.constants';
+import { IAuthUser } from '../../../interfaces/common';
 
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const user = req.user;
-  const result = await ReviewService.insertIntoDB(req.body);
+  const result = await ReviewService.insertIntoDB(req.body, user as IAuthUser);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,

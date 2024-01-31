@@ -74,11 +74,12 @@ const softDelete = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+
 export const DoctorController = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
   updateIntoDB,
   deleteFromDB,
-  softDelete,
+  softDelete
 };
