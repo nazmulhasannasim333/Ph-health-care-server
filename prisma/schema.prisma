@@ -48,6 +48,7 @@ model Doctor {
   user                User                @relation(references: [email], fields: [email])
   appointments        Appointment[]
   schedules           DoctorSchedule[]
+  prescription        Prescription[]
 
   @@map("doctors")
 }
@@ -85,6 +86,7 @@ model Patient {
   patientHelthData PatientHelthData?
   user             User              @relation(references: [email], fields: [email])
   appointments     Appointment[]
+  prescription     Prescription[]
 
   @@map("patients")
 }
@@ -196,6 +198,7 @@ model Appointment {
   createdAt      DateTime          @default(now())
   updatedAt      DateTime          @updatedAt
   payment        Payment?
+  prescription   Prescription?
 
   @@map("appointments")
 }
@@ -210,6 +213,26 @@ model Payment {
   paymentGatewayData Json?
 
   @@map("payments")
+}
+
+model Prescription {
+  id                 String        @id @default(uuid())
+  doctorId           String        
+  doctor             Doctor        @relation(fields: [doctorId], references: [id])
+  
+  patientId          String        
+  patient            Patient       @relation(fields: [patientId], references: [id])
+  
+  appointmentId      String        @unique
+  appointment        Appointment   @relation(fields: [appointmentId], references: [id])
+  
+  dateIssued         DateTime
+  followUpDate       DateTime?
+  instructions       String
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+
+  @@map("prescriptions")
 }
 
 enum UserRole {

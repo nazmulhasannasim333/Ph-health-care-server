@@ -12,7 +12,7 @@ export default {
     expires_in: process.env.EXPIRES_IN,
     refresh_secret: process.env.REFRESH_SECRET,
     refresh_expires_in: process.env.REFRESH_EXPIRES_IN,
-    passwordResetTokenExpirationTime: process.env.PASS_RESET_EXPIRATION_TIME
+    passwordResetTokenExpirationTime: process.env.PASS_RESET_EXPIRATION_TIME,
   },
   reset_link: process.env.RESET_LINK,
   email: process.env.EMAIL,
@@ -25,7 +25,6 @@ export default {
     storePass: process.env.STORE_PASSWORD,
     successUrl: process.env.SUCCESS_URL,
     cancelUrl: process.env.CANCEL_URL,
-    failUrl: process.env.FAIL_URL
-  }
-
+    failUrl: process.env.FAIL_URL,
+  },
 };

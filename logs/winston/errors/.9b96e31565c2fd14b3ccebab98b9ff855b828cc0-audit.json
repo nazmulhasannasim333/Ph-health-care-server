@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\errors\\.9b96e31565c2fd14b3ccebab98b9ff855b828cc0-audit.json",
+    "files": [
+        {
+            "date": 1705410463812,
+            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\errors\\phu-2024-16-01-19-error.log",
+            "hash": "ba4334b36dcf845e1215c4db11cea330b042cf37f64c87c8d1e25e0105451704"
+        },
+        {
+            "date": 1705416828026,
+            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\errors\\phu-2024-16-01-20-error.log",
+            "hash": "cc2cff237ad9479bf5d70c9d06466e477348c94bfa656f02cc7a85b7e0366e23"
+        },
+        {
+            "date": 1705417696637,
+            "name": "E:\\phero_developer\\ph-health-care\\health-care-server\\logs\\winston\\errors\\phu-2024-16-01-21-error.log",
+            "hash": "3430fdf608829e8c76120c367530bbfc56a2e2fb1bab8f723362ea0a9d66bd83"
+        }
+    ],
+    "hashType": "sha256"
+}
