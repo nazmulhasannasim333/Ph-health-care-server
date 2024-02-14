@@ -37,17 +37,20 @@ router.post(
   }
 );
 
-// router.post(
-//   '/create-admin',
-//   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
-//   validateRequest(UserValidation.createAdmin),
-//   UserController.createAdmin,
-// );
 router.post(
   '/create-patient',
-  validateRequest(UserValidation.createPatient),
-  UserController.createPatient,
+  FileUploadHelper.upload.single('file'),
+  (req: Request, res: Response, next: NextFunction) => {
+    req.body = UserValidation.createPatient.parse(JSON.parse(req.body.data))
+    return UserController.createPatient(req, res, next)
+  }
 );
+
+// router.post(
+//   '/create-patient',
+//   validateRequest(UserValidation.createPatient),
+//   UserController.createPatient,
+// );
 
 router.patch(
   '/:id/status',

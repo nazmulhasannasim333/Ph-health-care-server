@@ -30,8 +30,8 @@ const createAdmin = catchAsync(async (req: Request, res: Response) => {
 });
 
 const createPatient = catchAsync(async (req: Request, res: Response) => {
-  const { patient, ...userData } = req.body;
-  const result = await UserServices.createPatient(patient, userData);
+  //const { patient, ...userData } = req.body;
+  const result = await UserServices.createPatient(req);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,

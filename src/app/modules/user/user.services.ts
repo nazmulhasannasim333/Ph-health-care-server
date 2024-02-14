@@ -60,7 +60,7 @@ const createAdmin = async (req: Request): Promise<Admin> => {
   const uploadedProfileImage = await FileUploadHelper.uploadToCloudinary(file);
 
   if (uploadedProfileImage) {
-    req.body.doctor.profilePhoto = uploadedProfileImage.secure_url;
+    req.body.admin.profilePhoto = uploadedProfileImage.secure_url;
   }
 
   const hashPassword = await hashedPassword(req.body.password);
@@ -83,22 +83,26 @@ const createAdmin = async (req: Request): Promise<Admin> => {
   return result;
 };
 
-const createPatient = async (
-  patient: Patient,
-  userData: any,
-): Promise<Patient> => {
-  const hashPassword = await hashedPassword(userData.password);
+const createPatient = async (req: Request): Promise<Patient> => {
+  const file = req.file as IUploadFile;
+  const uploadedProfileImage = await FileUploadHelper.uploadToCloudinary(file);
+
+  if (uploadedProfileImage) {
+    req.body.patient.profilePhoto = uploadedProfileImage.secure_url;
+  }
+
+  const hashPassword = await hashedPassword(req.body.password);
   const result = await prisma.$transaction(async transactionClient => {
     const newUser = await transactionClient.user.create({
       data: {
-        email: patient.email,
+        email: req.body.patient.email,
         password: hashPassword,
-        pushNotificationToken: userData.pushNotificationToken,
+        pushNotificationToken: req.body.pushNotificationToken,
         role: UserRole.PATIENT,
       },
     });
     const newPatient = await transactionClient.patient.create({
-      data: patient,
+      data: req.body.patient,
     });
 
     return newPatient;

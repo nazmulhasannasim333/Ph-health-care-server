@@ -46,14 +46,18 @@ const createAdmin = z.object({
   })
 });
 const createPatient = z.object({
-  body: z.object({
-    password: z.string(),
-    pushNotificationToken: z.string(),
-    patient: z.object({
-      email: z.string().email(),
-      name: z.string(),
+  password: z.string(),
+  pushNotificationToken: z.string(),
+  patient: z.object({
+    email: z.string().email(),
+    name: z.string(),
+    contactNumber: z.string({
+      required_error: "Contact number is required!"
     }),
-  }),
+    address: z.string({
+      required_error: "Address is required"
+    })
+  })
 });
 
 const updateStatus = z.object({
