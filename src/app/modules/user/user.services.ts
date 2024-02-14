@@ -12,29 +12,15 @@ import { Request } from 'express';
 import { IUploadFile } from '../../../interfaces/file';
 import { FileUploadHelper } from '../../../helpers/fileUploadHelper';
 
-// const createAdmin = async (req: Request): Promise<IGenericResponse> => {
-//   const file = req.file as IUploadFile;
 
-//   const uploadedProfileImage = await FileUploadHelper.uploadToCloudinary(file);
-
-//   if (uploadedProfileImage) {
-//       req.body.admin.profileImage = uploadedProfileImage.secure_url;
-//   }
-
-//   const response: IGenericResponse = await AuthService.post('/users/create-admin', req.body, {
-//       headers: {
-//           Authorization: req.headers.authorization
-//       }
-//   });
-//   return response;
-// };
 const createDoctor = async (req: Request) => {
   const file = req.file as IUploadFile;
-  const uploadedProfileImage = await FileUploadHelper.uploadToCloudinary(file);
 
-  if (uploadedProfileImage) {
-    req.body.doctor.profilePhoto = uploadedProfileImage.secure_url;
+  if (file) {
+    const uploadedProfileImage = await FileUploadHelper.uploadToCloudinary(file);
+    req.body.doctor.profilePhoto = uploadedProfileImage?.secure_url;
   }
+
   const hashPassword = await hashedPassword(req.body.password);
   const result = await prisma.$transaction(async transactionClient => {
     const newUser = await transactionClient.user.create({
@@ -57,10 +43,10 @@ const createDoctor = async (req: Request) => {
 
 const createAdmin = async (req: Request): Promise<Admin> => {
   const file = req.file as IUploadFile;
-  const uploadedProfileImage = await FileUploadHelper.uploadToCloudinary(file);
 
-  if (uploadedProfileImage) {
-    req.body.admin.profilePhoto = uploadedProfileImage.secure_url;
+  if (file) {
+    const uploadedProfileImage = await FileUploadHelper.uploadToCloudinary(file);
+    req.body.admin.profilePhoto = uploadedProfileImage?.secure_url;
   }
 
   const hashPassword = await hashedPassword(req.body.password);
@@ -85,10 +71,10 @@ const createAdmin = async (req: Request): Promise<Admin> => {
 
 const createPatient = async (req: Request): Promise<Patient> => {
   const file = req.file as IUploadFile;
-  const uploadedProfileImage = await FileUploadHelper.uploadToCloudinary(file);
 
-  if (uploadedProfileImage) {
-    req.body.patient.profilePhoto = uploadedProfileImage.secure_url;
+  if (file) {
+    const uploadedProfileImage = await FileUploadHelper.uploadToCloudinary(file);
+    req.body.patient.profilePhoto = uploadedProfileImage?.secure_url;
   }
 
   const hashPassword = await hashedPassword(req.body.password);
