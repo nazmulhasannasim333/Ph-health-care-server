@@ -10,12 +10,11 @@ const router = express.Router();
 
 router.get('/', UserController.getAllUser);
 
-// router.post(
-//   '/create-doctor',
-//   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
-//   validateRequest(UserValidation.createDoctor),
-//   UserController.createDoctor,
-// );
+router.get(
+  '/me',
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.DOCTOR, ENUM_USER_ROLE.PATIENT, ENUM_USER_ROLE.SUPER_ADMIN),
+  UserController.getMyProfile
+)
 
 router.post(
   '/create-doctor',
@@ -46,17 +45,21 @@ router.post(
   }
 );
 
-// router.post(
-//   '/create-patient',
-//   validateRequest(UserValidation.createPatient),
-//   UserController.createPatient,
-// );
-
 router.patch(
   '/:id/status',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   validateRequest(UserValidation.updateStatus),
   UserController.changeProfileStatus,
+);
+
+router.patch(
+  '/update-my-profile',
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.DOCTOR, ENUM_USER_ROLE.PATIENT),
+  FileUploadHelper.upload.single('file'),
+  (req: Request, res: Response, next: NextFunction) => {
+    req.body = JSON.parse(req.body.data)
+    return UserController.updateMyProfile(req, res, next)
+  }
 );
 
 export const userRoutes = router;
