@@ -1,5 +1,0 @@
-Wed Jan 17 2024 16:37:0 } [PH] error: 
-Invalid `prisma.appointment.deleteMany()` invocation:
-
-
-Foreign key constraint failed on the field: `payments_appointmentId_fkey (index)`

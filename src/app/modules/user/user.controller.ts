@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
 import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
@@ -6,9 +6,9 @@ import { UserServices } from './user.services';
 import { userFilterableFields } from './user.constant';
 import pick from '../../../shared/pick';
 
-const createDoctor = catchAsync(async (req: Request, res: Response) => {
-  const { doctor, ...userData } = req.body;
-  const result = await UserServices.createDoctor(doctor, userData);
+const createDoctor = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+  //const { doctor, ...userData } = req.body;
+  const result = await UserServices.createDoctor(req);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -17,9 +17,10 @@ const createDoctor = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+
 const createAdmin = catchAsync(async (req: Request, res: Response) => {
-  const { admin, ...userData } = req.body;
-  const result = await UserServices.createAdmin(admin, userData);
+  //const { admin, ...userData } = req.body;
+  const result = await UserServices.createAdmin(req);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,

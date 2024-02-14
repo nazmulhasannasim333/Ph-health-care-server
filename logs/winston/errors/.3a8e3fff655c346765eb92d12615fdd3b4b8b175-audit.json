@@ -6,21 +6,6 @@
     "auditLog": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/.3a8e3fff655c346765eb92d12615fdd3b4b8b175-audit.json",
     "files": [
         {
-            "date": 1705485066669,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-17-01-15-error.log",
-            "hash": "2df5328de917b34fdd54cc3da29ba8ccc1d54786ab5c9951c5b842f833978fc5"
-        },
-        {
-            "date": 1705487816454,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-17-01-16-error.log",
-            "hash": "14ef2e9672001487be3340411be06f5643fe4b9a67da77f454c4e607fa67d8f6"
-        },
-        {
-            "date": 1706098749302,
-            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-24-01-18-error.log",
-            "hash": "01aa8be41b040c358c3aab1ea15402b18988fee108b8f6b111d63eaf025a64c9"
-        },
-        {
             "date": 1706681693364,
             "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-31-01-12-error.log",
             "hash": "2984ef64de51b6275d36d27fef553881ccd1888971e15e7373daed286d4afa7d"
@@ -29,6 +14,16 @@
             "date": 1706685425350,
             "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-31-01-13-error.log",
             "hash": "93ab7b15160e12365b4cba415f0c06739a235b3bd4bed476ec3eb2d093e941f8"
+        },
+        {
+            "date": 1707885822084,
+            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-14-02-10-error.log",
+            "hash": "ec16744d8bf8e04495850dda283037c98b4bed4ef2362e874fa144dd718b6d1f"
+        },
+        {
+            "date": 1707887921187,
+            "name": "/Users/fahimahammedfiroz/level2/health-care-server/logs/winston/errors/phu-2024-14-02-11-error.log",
+            "hash": "f854a194085a7e3be92c8b88c8a2a9cfc8ff68010746b4b1a41850a8a87dc9aa"
         }
     ],
     "hashType": "sha256"
