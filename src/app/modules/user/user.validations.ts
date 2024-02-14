@@ -7,7 +7,6 @@ const createDoctor = z.object({
   doctor: z.object({
     email: z.string().email(),
     name: z.string(),
-    profilePhoto: z.string().nullable(),
     contactNumber: z.string(),
     address: z.string().nullable(),
     registrationNumber: z.string(),
@@ -26,7 +25,6 @@ const createAdmin = z.object({
   admin: z.object({
     email: z.string().email(),
     name: z.string(),
-    profilePhoto: z.string().nullable(),
     contactNumber: z.string(),
     gender: z.enum(['MALE', 'FEMALE']),
     designation: z.string(),
