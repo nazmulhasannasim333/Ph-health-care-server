@@ -8,20 +8,45 @@ import { IUser, IUserFilterRequest } from './user.interface';
 import { IGenericResponse } from '../../../interfaces/common';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { userSearchableFields } from './user.constant';
+import { Request } from 'express';
+import { IUploadFile } from '../../../interfaces/file';
+import { FileUploadHelper } from '../../../helpers/fileUploadHelper';
 
-const createDoctor = async (doctor: Doctor, userData: any): Promise<Doctor> => {
-  const hashPassword = await hashedPassword(userData.password);
+// const createAdmin = async (req: Request): Promise<IGenericResponse> => {
+//   const file = req.file as IUploadFile;
+
+//   const uploadedProfileImage = await FileUploadHelper.uploadToCloudinary(file);
+
+//   if (uploadedProfileImage) {
+//       req.body.admin.profileImage = uploadedProfileImage.secure_url;
+//   }
+
+//   const response: IGenericResponse = await AuthService.post('/users/create-admin', req.body, {
+//       headers: {
+//           Authorization: req.headers.authorization
+//       }
+//   });
+//   return response;
+// };
+const createDoctor = async (req: Request) => {
+  const file = req.file as IUploadFile;
+  const uploadedProfileImage = await FileUploadHelper.uploadToCloudinary(file);
+
+  if (uploadedProfileImage) {
+    req.body.doctor.profilePhoto = uploadedProfileImage.secure_url;
+  }
+  const hashPassword = await hashedPassword(req.body.password);
   const result = await prisma.$transaction(async transactionClient => {
     const newUser = await transactionClient.user.create({
       data: {
-        email: doctor.email,
+        email: req.body.doctor.email,
         password: hashPassword,
-        pushNotificationToken: userData.pushNotificationToken,
+        pushNotificationToken: req.body.pushNotificationToken,
         role: UserRole.DOCTOR,
       },
     });
     const newDoctor = await transactionClient.doctor.create({
-      data: doctor,
+      data: req.body.doctor,
     });
 
     return newDoctor;
@@ -30,19 +55,26 @@ const createDoctor = async (doctor: Doctor, userData: any): Promise<Doctor> => {
   return result;
 };
 
-const createAdmin = async (admin: Admin, userData: any): Promise<Admin> => {
-  const hashPassword = await hashedPassword(userData.password);
+const createAdmin = async (req: Request): Promise<Admin> => {
+  const file = req.file as IUploadFile;
+  const uploadedProfileImage = await FileUploadHelper.uploadToCloudinary(file);
+
+  if (uploadedProfileImage) {
+    req.body.admin.profilePhoto = uploadedProfileImage.secure_url;
+  }
+
+  const hashPassword = await hashedPassword(req.body.password);
   const result = await prisma.$transaction(async transactionClient => {
     const newUser = await transactionClient.user.create({
       data: {
-        email: admin.email,
+        email: req.body.admin.email,
         password: hashPassword,
-        pushNotificationToken: userData.pushNotificationToken,
+        pushNotificationToken: req.body.pushNotificationToken,
         role: UserRole.ADMIN,
       },
     });
     const newAdmin = await transactionClient.admin.create({
-      data: admin,
+      data: req.body.admin,
     });
 
     return newAdmin;
@@ -51,22 +83,26 @@ const createAdmin = async (admin: Admin, userData: any): Promise<Admin> => {
   return result;
 };
 
-const createPatient = async (
-  patient: Patient,
-  userData: any,
-): Promise<Patient> => {
-  const hashPassword = await hashedPassword(userData.password);
+const createPatient = async (req: Request): Promise<Patient> => {
+  const file = req.file as IUploadFile;
+  const uploadedProfileImage = await FileUploadHelper.uploadToCloudinary(file);
+
+  if (uploadedProfileImage) {
+    req.body.patient.profilePhoto = uploadedProfileImage.secure_url;
+  }
+
+  const hashPassword = await hashedPassword(req.body.password);
   const result = await prisma.$transaction(async transactionClient => {
     const newUser = await transactionClient.user.create({
       data: {
-        email: patient.email,
+        email: req.body.patient.email,
         password: hashPassword,
-        pushNotificationToken: userData.pushNotificationToken,
+        pushNotificationToken: req.body.pushNotificationToken,
         role: UserRole.PATIENT,
       },
     });
     const newPatient = await transactionClient.patient.create({
-      data: patient,
+      data: req.body.patient,
     });
 
     return newPatient;

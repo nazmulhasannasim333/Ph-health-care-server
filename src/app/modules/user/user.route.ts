@@ -1,31 +1,56 @@
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import { UserController } from './user.controller';
 import validateRequest from '../../middlewares/validateRequest';
 import { UserValidation } from './user.validations';
 import auth from '../../middlewares/auth';
 import { ENUM_USER_ROLE } from '../../../enums/user';
+import { FileUploadHelper } from '../../../helpers/fileUploadHelper';
 
 const router = express.Router();
 
 router.get('/', UserController.getAllUser);
 
+// router.post(
+//   '/create-doctor',
+//   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+//   validateRequest(UserValidation.createDoctor),
+//   UserController.createDoctor,
+// );
+
 router.post(
   '/create-doctor',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
-  validateRequest(UserValidation.createDoctor),
-  UserController.createDoctor,
+  FileUploadHelper.upload.single('file'),
+  (req: Request, res: Response, next: NextFunction) => {
+    req.body = UserValidation.createDoctor.parse(JSON.parse(req.body.data))
+    return UserController.createDoctor(req, res, next)
+  }
 );
+
 router.post(
   '/create-admin',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
-  validateRequest(UserValidation.createAdmin),
-  UserController.createAdmin,
+  FileUploadHelper.upload.single('file'),
+  (req: Request, res: Response, next: NextFunction) => {
+    req.body = UserValidation.createAdmin.parse(JSON.parse(req.body.data))
+    return UserController.createAdmin(req, res, next)
+  }
 );
+
 router.post(
   '/create-patient',
-  validateRequest(UserValidation.createPatient),
-  UserController.createPatient,
+  FileUploadHelper.upload.single('file'),
+  (req: Request, res: Response, next: NextFunction) => {
+    req.body = UserValidation.createPatient.parse(JSON.parse(req.body.data))
+    return UserController.createPatient(req, res, next)
+  }
 );
+
+// router.post(
+//   '/create-patient',
+//   validateRequest(UserValidation.createPatient),
+//   UserController.createPatient,
+// );
 
 router.patch(
   '/:id/status',
