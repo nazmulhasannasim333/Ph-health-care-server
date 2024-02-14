@@ -11,6 +11,7 @@ import { userSearchableFields } from './user.constant';
 import { Request } from 'express';
 import { IUploadFile } from '../../../interfaces/file';
 import { FileUploadHelper } from '../../../helpers/fileUploadHelper';
+import auth from '../../middlewares/auth';
 
 
 const createDoctor = async (req: Request) => {
@@ -185,10 +186,50 @@ const getAllUser = async (
   };
 };
 
+const getMyProfile = async (authUser: any) => {
+  const userData = await prisma.user.findUnique({
+    where: {
+      id: authUser.userId,
+      status: UserStatus.ACTIVE
+    },
+    select: {
+      email: true,
+      role: true,
+      needPasswordChange: true,
+      status: true
+    }
+  });
+
+  let profileData;
+  if (userData?.role === UserRole.ADMIN) {
+    profileData = await prisma.admin.findUnique({
+      where: {
+        email: userData.email
+      }
+    })
+  }
+  else if (userData?.role === UserRole.DOCTOR) {
+    profileData = await prisma.doctor.findUnique({
+      where: {
+        email: userData.email
+      }
+    })
+  }
+  else if (userData?.role === UserRole.PATIENT) {
+    profileData = await prisma.patient.findUnique({
+      where: {
+        email: userData.email
+      }
+    })
+  }
+  return { ...profileData, ...userData };
+};
+
 export const UserServices = {
   createDoctor,
   createAdmin,
   createPatient,
   changeProfileStatus,
-  getAllUser
+  getAllUser,
+  getMyProfile
 };

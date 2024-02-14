@@ -10,12 +10,11 @@ const router = express.Router();
 
 router.get('/', UserController.getAllUser);
 
-// router.post(
-//   '/create-doctor',
-//   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
-//   validateRequest(UserValidation.createDoctor),
-//   UserController.createDoctor,
-// );
+router.get(
+  '/me',
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.DOCTOR, ENUM_USER_ROLE.PATIENT, ENUM_USER_ROLE.SUPER_ADMIN),
+  UserController.getMyProfile
+)
 
 router.post(
   '/create-doctor',
@@ -45,12 +44,6 @@ router.post(
     return UserController.createPatient(req, res, next)
   }
 );
-
-// router.post(
-//   '/create-patient',
-//   validateRequest(UserValidation.createPatient),
-//   UserController.createPatient,
-// );
 
 router.patch(
   '/:id/status',
