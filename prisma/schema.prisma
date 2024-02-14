@@ -263,6 +263,7 @@ enum UserRole {
   ADMIN
   DOCTOR
   PATIENT
+  SUPER_ADMIN
 }
 
 enum UserStatus {
