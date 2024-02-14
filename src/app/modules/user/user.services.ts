@@ -225,11 +225,61 @@ const getMyProfile = async (authUser: any) => {
   return { ...profileData, ...userData };
 };
 
+const updateMyProfile = async (authUser: any, req: Request) => {
+
+  console.log("hello update", req.body);
+  const userData = await prisma.user.findUnique({
+    where: {
+      id: authUser.userId,
+      status: UserStatus.ACTIVE
+    }
+  });
+
+  if (!userData) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "User does not exists!")
+  }
+
+  const file = req.file as IUploadFile;
+
+  if (file) {
+    const uploadedProfileImage = await FileUploadHelper.uploadToCloudinary(file);
+    req.body.profilePhoto = uploadedProfileImage?.secure_url;
+  }
+
+  let profileData;
+  if (userData?.role === UserRole.ADMIN) {
+    profileData = await prisma.admin.update({
+      where: {
+        email: userData.email
+      },
+      data: req.body
+    });
+  }
+  else if (userData?.role === UserRole.DOCTOR) {
+    profileData = await prisma.doctor.update({
+      where: {
+        email: userData.email
+      },
+      data: req.body
+    })
+  }
+  else if (userData?.role === UserRole.PATIENT) {
+    profileData = await prisma.patient.update({
+      where: {
+        email: userData.email
+      },
+      data: req.body
+    });
+  }
+  return { ...profileData, ...userData };
+};
+
 export const UserServices = {
   createDoctor,
   createAdmin,
   createPatient,
   changeProfileStatus,
   getAllUser,
-  getMyProfile
+  getMyProfile,
+  updateMyProfile
 };
