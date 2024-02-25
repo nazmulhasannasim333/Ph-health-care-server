@@ -140,7 +140,7 @@ const getMyAppointment = async (
                 },
         include: authUser?.role === UserRole.PATIENT
             ? { doctor: true }
-            : { patient: true }
+            : { patient: { include: { medicalReport: true, prescription: true } } }
     });
     const total = await prisma.appointment.count({
         where: whereConditions

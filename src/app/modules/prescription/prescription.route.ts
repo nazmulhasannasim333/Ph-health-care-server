@@ -6,10 +6,17 @@ import { ENUM_USER_ROLE } from '../../../enums/user';
 import auth from '../../middlewares/auth';
 
 const router = express.Router();
-router.get('/', PrescriptionController.getAllFromDB);
+router.get(
+  '/',
+  PrescriptionController.getAllFromDB
+);
 
 //router.get('/:id', PrescriptionController.getByIdFromDB);
-router.get('/:patientId', PrescriptionController.patientPrescriptions);
+router.get(
+  '/my-prescriptions',
+  auth(ENUM_USER_ROLE.PATIENT),
+  PrescriptionController.patientPrescriptions
+);
 
 router.post(
   '/',
