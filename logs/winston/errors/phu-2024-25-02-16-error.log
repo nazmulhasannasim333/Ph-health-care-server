@@ -1,0 +1,767 @@
+Sun Feb 25 2024 16:0:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: []
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:1:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: []
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:2:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: []
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:3:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: []
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:4:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: []
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:5:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: []
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:6:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: []
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:7:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: []
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:8:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: []
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:9:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: []
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:10:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: []
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:11:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: []
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:12:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: []
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:13:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: []
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:14:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: [
+        "917231f7-7cc5-4a7a-9d3d-3a485ba190b0",
+        "18a3fbe4-cca9-4e67-9c3f-5d95e8bd6264"
+      ]
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:15:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: [
+        "917231f7-7cc5-4a7a-9d3d-3a485ba190b0",
+        "18a3fbe4-cca9-4e67-9c3f-5d95e8bd6264"
+      ]
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:16:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: [
+        "917231f7-7cc5-4a7a-9d3d-3a485ba190b0",
+        "18a3fbe4-cca9-4e67-9c3f-5d95e8bd6264"
+      ]
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:17:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: [
+        "917231f7-7cc5-4a7a-9d3d-3a485ba190b0",
+        "18a3fbe4-cca9-4e67-9c3f-5d95e8bd6264"
+      ]
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:18:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: [
+        "917231f7-7cc5-4a7a-9d3d-3a485ba190b0",
+        "18a3fbe4-cca9-4e67-9c3f-5d95e8bd6264"
+      ]
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:19:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: [
+        "917231f7-7cc5-4a7a-9d3d-3a485ba190b0",
+        "18a3fbe4-cca9-4e67-9c3f-5d95e8bd6264"
+      ]
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:20:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: [
+        "917231f7-7cc5-4a7a-9d3d-3a485ba190b0",
+        "18a3fbe4-cca9-4e67-9c3f-5d95e8bd6264"
+      ]
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:21:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: [
+        "917231f7-7cc5-4a7a-9d3d-3a485ba190b0",
+        "18a3fbe4-cca9-4e67-9c3f-5d95e8bd6264"
+      ]
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:22:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: [
+        "917231f7-7cc5-4a7a-9d3d-3a485ba190b0",
+        "18a3fbe4-cca9-4e67-9c3f-5d95e8bd6264"
+      ]
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:23:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: [
+        "917231f7-7cc5-4a7a-9d3d-3a485ba190b0",
+        "18a3fbe4-cca9-4e67-9c3f-5d95e8bd6264"
+      ]
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:24:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: [
+        "917231f7-7cc5-4a7a-9d3d-3a485ba190b0",
+        "18a3fbe4-cca9-4e67-9c3f-5d95e8bd6264"
+      ]
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:25:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: [
+        "917231f7-7cc5-4a7a-9d3d-3a485ba190b0",
+        "18a3fbe4-cca9-4e67-9c3f-5d95e8bd6264"
+      ]
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+Sun Feb 25 2024 16:26:1 } [PH] error: appointments is not defined
+Sun Feb 25 2024 16:27:0 } [PH] error: appointments is not defined
+Sun Feb 25 2024 16:28:5 } [PH] error: Transaction API error: Transaction already closed: A commit cannot be executed on an expired transaction. The timeout for this transaction was 5000 ms, however 5008 ms passed since the start of the transaction. Consider increasing the interactive transaction timeout or doing less work in the transaction.

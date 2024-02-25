@@ -1,4 +1,4 @@
-import { Appointment, PaymentStatus, Prisma, UserRole } from '@prisma/client';
+import { Appointment, AppointmentStatus, PaymentStatus, Prisma, UserRole } from '@prisma/client';
 import prisma from '../../../shared/prisma';
 import { IAuthUser, IGenericResponse } from '../../../interfaces/common';
 import { v4 as uuidv4 } from 'uuid';
@@ -8,10 +8,11 @@ import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import { appointmentRelationalFields, appointmentRelationalFieldsMapper, appointmentSearchableFields } from './appointment.constants';
 import { generateTransactionId } from '../payment/payment.utils';
+import { asyncForEach } from '../../../shared/utils';
 
 const createAppointment = async (data: Partial<Appointment>, authUser: IAuthUser) => {
-    const { doctorId, doctorScheduleId } = data;
-    const isDoctorExists = await prisma.doctor.findFirstOrThrow({
+    const { doctorId, scheduleId } = data;
+    const isDoctorExists = await prisma.doctor.findFirst({
         where: {
             id: doctorId
         }
@@ -21,7 +22,7 @@ const createAppointment = async (data: Partial<Appointment>, authUser: IAuthUser
         throw new ApiError(httpStatus.BAD_REQUEST, "Doctor doesn't exists!")
     };
 
-    const isPatientExists = await prisma.patient.findFirstOrThrow({
+    const isPatientExists = await prisma.patient.findFirst({
         where: {
             email: authUser?.email
         }
@@ -33,7 +34,8 @@ const createAppointment = async (data: Partial<Appointment>, authUser: IAuthUser
 
     const isExistsDoctorSchedule = await prisma.doctorSchedule.findFirst({
         where: {
-            id: doctorScheduleId,
+            doctorId: doctorId,
+            scheduleId: scheduleId,
             isBooked: false
         }
     });
@@ -49,21 +51,23 @@ const createAppointment = async (data: Partial<Appointment>, authUser: IAuthUser
             data: {
                 patientId: isPatientExists.id,
                 doctorId: isDoctorExists.id,
-                doctorScheduleId: isExistsDoctorSchedule.id,
+                scheduleId: isExistsDoctorSchedule.scheduleId,
                 videoCallingId
             },
             include: {
                 doctor: true,
-                doctorSchedule: true
+                schedule: true
             }
         });
 
-        await transactionClient.doctorSchedule.update({
+        await transactionClient.doctorSchedule.updateMany({
             where: {
-                id: isExistsDoctorSchedule.id
+                doctorId: isDoctorExists.id,
+                scheduleId: isExistsDoctorSchedule.scheduleId
             },
             data: {
-                isBooked: true
+                isBooked: true,
+                appointmentId: result.id
             }
         });
 
@@ -90,6 +94,8 @@ const getMyAppointment = async (
     const { limit, page, skip } = paginationHelpers.calculatePagination(options);
     const andConditions = [];
 
+    console.log(filters)
+
     if (authUser?.role === UserRole.PATIENT) {
         andConditions.push(
             {
@@ -107,7 +113,18 @@ const getMyAppointment = async (
                 }
             }
         )
+    };
+
+    if (Object.keys(filters).length > 0) {
+        andConditions.push({
+            AND: Object.keys(filters).map((key) => ({
+                [key]: {
+                    equals: (filters as any)[key]
+                }
+            }))
+        });
     }
+
     const whereConditions: Prisma.AppointmentWhereInput =
         andConditions.length > 0 ? { AND: andConditions } : {};
 
@@ -221,8 +238,9 @@ const cancelUnpaidAppointments = async () => {
             }
         }
     });
+
     const appointmentIdsToCancel = uppaidAppointments.map(appointment => appointment.id);
-    const scheduleIdsToCancel = uppaidAppointments.map(appointment => appointment.doctorScheduleId);
+    //const scheduleIdsToCancel = uppaidAppointments.map(appointment => appointment.scheduleId);
 
     await prisma.$transaction(async (transactionClient) => {
         await transactionClient.payment.deleteMany({
@@ -241,17 +259,57 @@ const cancelUnpaidAppointments = async () => {
             }
         });
 
-        await transactionClient.doctorSchedule.updateMany({
-            where: {
-                id: {
-                    in: scheduleIdsToCancel
+        await asyncForEach(uppaidAppointments, async (appointment: any) => {
+            await transactionClient.doctorSchedule.updateMany({
+                where: {
+                    AND: [
+                        {
+                            doctorId: appointment.doctorId
+                        },
+                        {
+                            scheduleId: appointment.scheduleId
+                        }
+                    ]
+                },
+                data: {
+                    isBooked: false
                 }
-            },
-            data: {
-                isBooked: false
-            }
+            });
         });
     })
+};
+
+const changeAppointmentStatus = async (appointmentId: string, status: AppointmentStatus, user: any) => {
+
+    const isDoctorsAppointment = await prisma.appointment.findFirst({
+        where: {
+            id: appointmentId,
+            paymentStatus: PaymentStatus.PAID
+        },
+        include: {
+            doctor: true
+        }
+    });
+
+    if (!isDoctorsAppointment) {
+        throw new ApiError(httpStatus.BAD_REQUEST, "Appointment not found!")
+    }
+
+    if (user.role === UserRole.DOCTOR) {
+        if (!(user.email === isDoctorsAppointment?.doctor.email)) {
+            throw new ApiError(httpStatus.BAD_REQUEST, "This is not your appointment!")
+        }
+    }
+
+    const result = await prisma.appointment.update({
+        where: {
+            id: appointmentId
+        },
+        data: {
+            status
+        }
+    })
+    return result;
 };
 
 
@@ -259,5 +317,6 @@ export const AppointmentServices = {
     createAppointment,
     getMyAppointment,
     getAllFromDB,
-    cancelUnpaidAppointments
+    cancelUnpaidAppointments,
+    changeAppointmentStatus
 };

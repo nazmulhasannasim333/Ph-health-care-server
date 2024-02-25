@@ -19,7 +19,7 @@ const createAppointment = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getMyAppointment = catchAsync(async (req: Request, res: Response) => {
-    const filters = {}
+    const filters = pick(req.query, appointmentFilterableFields);
     const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
     const user = req.user;
     const result = await AppointmentServices.getMyAppointment(filters, options, user as IAuthUser);
@@ -45,8 +45,21 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+const changeAppointmentStatus = catchAsync(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const user = req.user;
+    const result = await AppointmentServices.changeAppointmentStatus(id, req.body.status, user);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Appointment status changed successfully',
+        data: result
+    });
+});
+
 export const AppointmentController = {
     createAppointment,
     getMyAppointment,
-    getAllFromDB
+    getAllFromDB,
+    changeAppointmentStatus
 };
