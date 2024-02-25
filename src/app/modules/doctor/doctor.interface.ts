@@ -3,6 +3,7 @@ export type IDoctorFilterRequest = {
   email?: string | undefined;
   contactNo?: string | undefined;
   gender?: string | undefined;
+  specialties?: string | undefined;
 };
 
 export type IDoctorUpdate = {

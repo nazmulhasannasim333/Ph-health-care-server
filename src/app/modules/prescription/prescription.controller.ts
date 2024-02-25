@@ -16,12 +16,13 @@ const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
 const patientPrescriptions = catchAsync(async (req: Request, res: Response) => {
   const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
   const filters = pick(req.query, prescriptionFilterableFields);
-  const { patientId } = req.params;
+  const user = req.user;
   const result = await PrescriptionService.patientPrescriptions(
-    patientId,
+    user,
     filters,
     options,
   );

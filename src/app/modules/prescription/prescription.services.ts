@@ -39,17 +39,17 @@ const insertIntoDB = async (data: Partial<Prescription>, user: any): Promise<Pre
 };
 
 const patientPrescriptions = async (
-  patientId: string,
+  user: any,
   filters: any,
   options: IPaginationOptions,
 ): Promise<IGenericResponse<Prescription[]>> => {
   const { limit, page, skip } = paginationHelpers.calculatePagination(options);
   const { ...filterData } = filters;
   const andConditions = [];
-  if (patientId) {
+  if (user.email) {
     andConditions.push({
       patient: {
-        id: patientId,
+        email: user.email,
       },
     });
   }

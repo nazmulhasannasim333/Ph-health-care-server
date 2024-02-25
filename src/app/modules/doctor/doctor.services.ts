@@ -20,14 +20,84 @@ const insertIntoDB = async (data: Doctor): Promise<Doctor> => {
   return result;
 };
 
+// const getAllFromDB = async (
+//   filters: IDoctorFilterRequest,
+//   options: IPaginationOptions,
+// ): Promise<IGenericResponse<Doctor[]>> => {
+//   const { limit, page, skip } = paginationHelpers.calculatePagination(options);
+//   const { searchTerm, ...filterData } = filters;
+
+//   const andConditions = [];
+
+//   if (searchTerm) {
+//     andConditions.push({
+//       OR: doctorSearchableFields.map(field => ({
+//         [field]: {
+//           contains: searchTerm,
+//           mode: 'insensitive',
+//         },
+//       })),
+//     });
+//   }
+
+//   if (Object.keys(filterData).length > 0) {
+//     andConditions.push({
+//       AND: Object.keys(filterData).map(key => ({
+//         [key]: {
+//           equals: (filterData as any)[key],
+//         },
+//       })),
+//     });
+//   }
+
+//   andConditions.push({
+//     isDeleted: false,
+//   });
+
+//   const whereConditions: Prisma.DoctorWhereInput =
+//     andConditions.length > 0 ? { AND: andConditions } : {};
+
+//   const result = await prisma.doctor.findMany({
+//     where: whereConditions,
+//     skip,
+//     take: limit,
+//     orderBy:
+//       options.sortBy && options.sortOrder
+//         ? { [options.sortBy]: options.sortOrder }
+//         : {
+//           averageRating: 'desc'
+//         },
+//     include: {
+//       review: {
+//         select: {
+//           rating: true
+//         }
+//       }
+//     }
+//   });
+//   const total = await prisma.doctor.count({
+//     where: whereConditions,
+//   });
+
+//   return {
+//     meta: {
+//       total,
+//       page,
+//       limit,
+//     },
+//     data: result,
+//   };
+// };
+
+
 const getAllFromDB = async (
   filters: IDoctorFilterRequest,
   options: IPaginationOptions,
 ): Promise<IGenericResponse<Doctor[]>> => {
   const { limit, page, skip } = paginationHelpers.calculatePagination(options);
-  const { searchTerm, ...filterData } = filters;
+  const { searchTerm, specialties, ...filterData } = filters;
 
-  const andConditions = [];
+  const andConditions: Prisma.DoctorWhereInput[] = [];
 
   if (searchTerm) {
     andConditions.push({
@@ -40,14 +110,29 @@ const getAllFromDB = async (
     });
   }
 
-  if (Object.keys(filterData).length > 0) {
+  if (specialties && specialties.length > 0) {
+    // Corrected specialties condition
     andConditions.push({
-      AND: Object.keys(filterData).map(key => ({
-        [key]: {
-          equals: (filterData as any)[key],
+      doctorSpecialties: {
+        some: {
+          specialties: {
+            title: {
+              contains: specialties,
+              mode: 'insensitive',
+            },
+          },
         },
-      })),
+      },
     });
+  }
+
+  if (Object.keys(filterData).length > 0) {
+    const filterConditions = Object.keys(filterData).map(key => ({
+      [key]: {
+        equals: (filterData as any)[key],
+      },
+    }));
+    andConditions.push(...filterConditions);
   }
 
   andConditions.push({
@@ -61,20 +146,23 @@ const getAllFromDB = async (
     where: whereConditions,
     skip,
     take: limit,
-    orderBy:
-      options.sortBy && options.sortOrder
-        ? { [options.sortBy]: options.sortOrder }
-        : {
-          averageRating: 'desc'
-        },
+    orderBy: options.sortBy && options.sortOrder
+      ? { [options.sortBy]: options.sortOrder }
+      : { averageRating: 'desc' },
     include: {
       review: {
         select: {
-          rating: true
+          rating: true,
+        },
+      },
+      doctorSpecialties: {
+        include: {
+          specialties: true
         }
       }
-    }
+    },
   });
+
   const total = await prisma.doctor.count({
     where: whereConditions,
   });
@@ -89,12 +177,17 @@ const getAllFromDB = async (
   };
 };
 
+
 const getByIdFromDB = async (id: string): Promise<Doctor | null> => {
   const result = await prisma.doctor.findUnique({
     where: {
       id,
       isDeleted: false,
     },
+    include: {
+      doctorSpecialties: true,
+      schedules: true
+    }
   });
   return result;
 };
@@ -114,6 +207,7 @@ const updateIntoDB = async (
     if (!result) {
       throw new ApiError(httpStatus.BAD_REQUEST, 'Unable to update Doctor');
     }
+    console.log({ specialties })
     if (specialties && specialties.length > 0) {
       const deleteSpecialities = specialties.filter(
         speciality => speciality.specialtiesId && speciality.isDeleted,
@@ -122,6 +216,8 @@ const updateIntoDB = async (
       const newSpecialities = specialties.filter(
         speciality => speciality.specialtiesId && !speciality.isDeleted,
       );
+
+      console.log({ deleteSpecialities, newSpecialities });
 
       await asyncForEach(
         deleteSpecialities,
@@ -161,7 +257,7 @@ const updateIntoDB = async (
       id,
     },
     include: {
-      specialties: {
+      doctorSpecialties: {
         include: {
           specialties: true,
         },

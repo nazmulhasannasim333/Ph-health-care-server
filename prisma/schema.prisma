@@ -41,7 +41,7 @@ model Doctor {
   qualification       String
   currentWorkingPlace String
   designation         String
-  specialties         DoctorSpecialties[]
+  doctorSpecialties   DoctorSpecialties[]
   isDeleted           Boolean             @default(false)
   createdAt           DateTime            @default(now())
   updatedAt           DateTime            @updatedAt
