@@ -5,7 +5,7 @@ const createAppointment = z.object({
         doctorId: z.string({
             required_error: "Doctor Id is required!"
         }),
-        doctorScheduleId: z.string({
+        scheduleId: z.string({
             required_error: "Doctor schedule id is required!"
         })
     })

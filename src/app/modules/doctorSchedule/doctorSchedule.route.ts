@@ -11,7 +11,11 @@ router.get(
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.DOCTOR, ENUM_USER_ROLE.PATIENT),
   ScheduleController.getAllFromDB);
 
-// router.get('/:id', ScheduleController.getByIdFromDB);
+router.get(
+  '/my-schedules',
+  auth(ENUM_USER_ROLE.DOCTOR),
+  ScheduleController.getMySchedules
+);
 
 // router.patch('/:id', ScheduleController.updateIntoDB);
 router.post(
@@ -20,6 +24,10 @@ router.post(
   auth(ENUM_USER_ROLE.DOCTOR),
   ScheduleController.insertIntoDB,
 );
-// router.delete('/:id', ScheduleController.deleteFromDB);
+router.delete(
+  '/:id',
+  auth(ENUM_USER_ROLE.DOCTOR),
+  ScheduleController.deleteFromDB
+);
 
 export const DoctorScheduleRoutes = router;

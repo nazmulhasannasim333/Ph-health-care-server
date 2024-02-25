@@ -12,18 +12,25 @@ router.get(
     '/',
     auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
     AppointmentController.getAllFromDB
-)
+);
+
 router.get(
     '/my-appointments',
     auth(ENUM_USER_ROLE.PATIENT, ENUM_USER_ROLE.DOCTOR),
     AppointmentController.getMyAppointment
-)
+);
 
 router.post(
     '/',
     auth(ENUM_USER_ROLE.PATIENT),
     validateRequest(AppointmentValidation.createAppointment),
     AppointmentController.createAppointment
+);
+
+router.patch(
+    '/status/:id',
+    auth(ENUM_USER_ROLE.DOCTOR),
+    AppointmentController.changeAppointmentStatus
 );
 
 
