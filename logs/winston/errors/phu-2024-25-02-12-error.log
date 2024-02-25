@@ -1,0 +1,28 @@
+Sun Feb 25 2024 12:59:0 } [PH] error: 
+Invalid `prisma.doctorSchedule.updateMany()` invocation:
+
+{
+  where: {
+    id: {
+    ~~
+      in: []
+    },
+?   AND?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   OR?: DoctorScheduleWhereInput[],
+?   NOT?: DoctorScheduleWhereInput | DoctorScheduleWhereInput[],
+?   doctorId?: StringFilter | String,
+?   scheduleId?: StringFilter | String,
+?   isBooked?: BoolFilter | Boolean,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   appointmentId?: StringNullableFilter | String | Null,
+?   doctor?: DoctorRelationFilter | DoctorWhereInput,
+?   schedule?: ScheduleRelationFilter | ScheduleWhereInput,
+?   appointment?: AppointmentNullableRelationFilter | AppointmentWhereInput | Null
+  },
+  data: {
+    isBooked: false
+  }
+}
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.

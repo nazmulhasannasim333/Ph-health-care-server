@@ -18,7 +18,8 @@ const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
 const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, scheduleFilterableFields);
   const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
-  const result = await ScheduleService.getAllFromDB(filters, options);
+  const user = req.user;
+  const result = await ScheduleService.getAllFromDB(filters, options, user);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
