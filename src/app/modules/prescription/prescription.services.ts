@@ -2,7 +2,7 @@ import prisma from '../../../shared/prisma';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import { IAuthUser, IGenericResponse } from '../../../interfaces/common';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
-import { Prescription, Prisma, UserRole } from '@prisma/client';
+import { PaymentStatus, Prescription, Prisma, UserRole } from '@prisma/client';
 import ApiError from '../../../errors/ApiError';
 import httpStatus from 'http-status';
 import {
@@ -10,39 +10,29 @@ import {
   prescriptionRelationalFieldsMapper,
 } from './prescription.constants';
 
-const insertIntoDB = async (data: Prescription): Promise<Prescription> => {
+const insertIntoDB = async (data: Partial<Prescription>, user: any): Promise<Prescription> => {
   const isAppointmentExists = await prisma.appointment.findFirstOrThrow({
     where: {
       id: data.appointmentId,
+      paymentStatus: PaymentStatus.PAID
     },
+    include: {
+      doctor: true
+    }
   });
 
-  if (!isAppointmentExists) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "Appointment doesn't exists!");
-  }
-
-  const isDoctorExists = await prisma.doctor.findFirstOrThrow({
-    where: {
-      id: data.doctorId,
-    },
-  });
-
-  if (!isDoctorExists) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "Doctor doesn't exists!");
-  }
-
-  const isPatientExists = await prisma.patient.findFirstOrThrow({
-    where: {
-      id: data.patientId,
-    },
-  });
-
-  if (!isPatientExists) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "Patient doesn't exists!");
+  if (!(user.email === isAppointmentExists.doctor.email)) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "This is not your appointment!")
   }
 
   const result = await prisma.prescription.create({
-    data: data,
+    data: {
+      appointmentId: isAppointmentExists.id,
+      doctorId: isAppointmentExists.doctorId,
+      patientId: isAppointmentExists.patientId,
+      followUpDate: data.followUpDate || null,
+      instructions: data.instructions as string
+    }
   });
 
   return result;
@@ -94,8 +84,8 @@ const patientPrescriptions = async (
       options.sortBy && options.sortOrder
         ? { [options.sortBy]: options.sortOrder }
         : {
-            createdAt: 'desc',
-          },
+          createdAt: 'desc',
+        },
     include: {
       doctor: true,
       patient: true,
@@ -155,8 +145,8 @@ const getAllFromDB = async (
       options.sortBy && options.sortOrder
         ? { [options.sortBy]: options.sortOrder }
         : {
-            createdAt: 'desc',
-          },
+          createdAt: 'desc',
+        },
     include: {
       doctor: true,
       patient: true,

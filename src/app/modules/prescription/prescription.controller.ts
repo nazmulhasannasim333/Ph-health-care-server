@@ -8,7 +8,7 @@ import { prescriptionFilterableFields } from './prescription.constants';
 
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const user = req.user;
-  const result = await PrescriptionService.insertIntoDB(req.body);
+  const result = await PrescriptionService.insertIntoDB(req.body, user);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
