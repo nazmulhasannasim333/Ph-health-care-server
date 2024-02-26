@@ -186,7 +186,8 @@ const getByIdFromDB = async (id: string): Promise<Doctor | null> => {
     },
     include: {
       doctorSpecialties: true,
-      schedules: true
+      schedules: true,
+      review: true
     }
   });
   return result;
