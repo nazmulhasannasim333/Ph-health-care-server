@@ -1,9 +1,18 @@
 import { Specialties } from '@prisma/client';
 import prisma from '../../../shared/prisma';
+import { Request } from 'express';
+import { IUploadFile } from '../../../interfaces/file';
+import { FileUploadHelper } from '../../../helpers/fileUploadHelper';
 
-const insertIntoDB = async (data: Specialties): Promise<Specialties> => {
+const insertIntoDB = async (req: Request): Promise<Specialties> => {
+  const file = req.file as IUploadFile;
+
+  if (file) {
+    const uploadIcon = await FileUploadHelper.uploadToCloudinary(file);
+    req.body.icon = uploadIcon?.secure_url;
+  }
   const result = await prisma.specialties.create({
-    data,
+    data: req.body
   });
   return result;
 };

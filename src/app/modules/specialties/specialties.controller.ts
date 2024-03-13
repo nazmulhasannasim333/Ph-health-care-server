@@ -1,11 +1,11 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
 import { SpecialtiesService } from './specialties.services';
 
-const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
-  const result = await SpecialtiesService.insertIntoDB(req.body);
+const insertIntoDB = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+  const result = await SpecialtiesService.insertIntoDB(req);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
