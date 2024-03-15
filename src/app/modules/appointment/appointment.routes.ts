@@ -29,7 +29,7 @@ router.post(
 
 router.patch(
     '/status/:id',
-    auth(ENUM_USER_ROLE.DOCTOR),
+    auth(ENUM_USER_ROLE.DOCTOR, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
     AppointmentController.changeAppointmentStatus
 );
 
