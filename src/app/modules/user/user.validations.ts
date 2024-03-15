@@ -3,7 +3,6 @@ import { z } from 'zod';
 
 const createDoctor = z.object({
   password: z.string(),
-  pushNotificationToken: z.string(),
   doctor: z.object({
     email: z.string().email(),
     name: z.string(),
@@ -21,31 +20,15 @@ const createDoctor = z.object({
 
 const createAdmin = z.object({
   password: z.string(),
-  pushNotificationToken: z.string(),
   admin: z.object({
     email: z.string().email(),
     name: z.string(),
-    contactNumber: z.string(),
-    gender: z.enum(['MALE', 'FEMALE']),
-    designation: z.string(),
-    dateOfBirth: z.string(),
-    bloodGroup: z.enum([
-      'A_POSITIVE',
-      'A_NEGATIVE',
-      'B_POSITIVE',
-      'B_NEGATIVE',
-      'O_POSITIVE',
-      'O_NEGATIVE',
-      'AB_POSITIVE',
-      'AB_NEGATIVE',
-    ]),
-    weight: z.string(),
-    maritalStatus: z.enum(['MARRIED', 'UNMARRIED']),
+    contactNumber: z.string()
   })
 });
+
 const createPatient = z.object({
   password: z.string(),
-  pushNotificationToken: z.string(),
   patient: z.object({
     email: z.string().email(),
     name: z.string(),

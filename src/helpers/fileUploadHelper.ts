@@ -2,11 +2,12 @@ import { v2 as cloudinary } from 'cloudinary';
 import multer from 'multer';
 import * as fs from 'fs';
 import { ICloudinaryResponse, IUploadFile } from '../interfaces/file';
+import config from '../config';
 
 cloudinary.config({
-    cloud_name: 'dbgrq28js',
-    api_key: '173484379744282',
-    api_secret: 'eHKsVTxIOLl5oaO_BHxBQWAK3GA'
+    cloud_name: config.cloudinary.cloud_name,
+    api_key: config.cloudinary.api_key,
+    api_secret: config.cloudinary.api_secret
 });
 
 // cloudinary.uploader.upload("https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg",
