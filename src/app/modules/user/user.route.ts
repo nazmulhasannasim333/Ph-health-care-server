@@ -8,7 +8,11 @@ import { FileUploadHelper } from '../../../helpers/fileUploadHelper';
 
 const router = express.Router();
 
-router.get('/', UserController.getAllUser);
+router.get(
+  '/',
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  UserController.getAllUser
+);
 
 router.get(
   '/me',
@@ -28,7 +32,7 @@ router.post(
 
 router.post(
   '/create-admin',
-  //auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   FileUploadHelper.upload.single('file'),
   (req: Request, res: Response, next: NextFunction) => {
     req.body = UserValidation.createAdmin.parse(JSON.parse(req.body.data))

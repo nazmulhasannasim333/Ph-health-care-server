@@ -6,7 +6,6 @@ import { metaServices } from './meta.service';
 
 const fetchDashboardMetadata = catchAsync(async (req: Request, res: Response) => {
     const user = req.user;
-    console.log(user)
     const result = await metaServices.fetchDashboardMetadata(user);
     sendResponse(res, {
         statusCode: httpStatus.OK,

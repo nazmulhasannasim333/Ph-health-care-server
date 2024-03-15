@@ -5,7 +5,6 @@ import ApiError from "../../../errors/ApiError";
 import httpStatus from "http-status";
 
 const initPayment = async (paymentData: PaymentInfo) => {
-    console.log(paymentData)
     try {
         const data = {
             store_id: config.ssl.storeId,
@@ -45,7 +44,6 @@ const initPayment = async (paymentData: PaymentInfo) => {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         });
 
-        // console.log(response);
         return response.data
     }
     catch (err) {
@@ -59,7 +57,6 @@ const validate = async (data: any) => {
             method: 'GET',
             url: `${config.ssl.validationUrl}?val_id=${data.val_id}&store_id=${config.ssl.storeId}&store_passwd=${config.ssl.storePass}&format=json`
         })
-        console.log(response);
         return response.data;
     }
     catch (err) {

@@ -9,7 +9,7 @@ import { scheduleFilterableFields } from './doctorSchedule.constants';
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const user = req.user;
   const result = await DoctorScheduleService.insertIntoDB(req.body, user);
-  console.log(req.body);
+
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
