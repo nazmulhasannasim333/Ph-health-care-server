@@ -31,7 +31,6 @@ const createAdmin = catchAsync(async (req: Request, res: Response) => {
 
 const createPatient = catchAsync(async (req: Request, res: Response) => {
   //const { patient, ...userData } = req.body;
-  console.log("controller")
   const result = await UserServices.createPatient(req);
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -68,7 +67,6 @@ const getAllUser = catchAsync(async (req: Request, res: Response) => {
 
 const getMyProfile = catchAsync(async (req: Request, res: Response) => {
   const user = req.user;
-  console.log(user);
 
   const result = await UserServices.getMyProfile(user);
 

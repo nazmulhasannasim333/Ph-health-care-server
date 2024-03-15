@@ -156,7 +156,6 @@ const getMySchedules = async (
 ): Promise<IGenericResponse<DoctorSchedule[]>> => {
   const { limit, page, skip } = paginationHelpers.calculatePagination(options);
   const { startDate, endDate, ...filterData } = filters;
-  console.log(filters)
 
   const whereConditions: Prisma.DoctorScheduleWhereInput = {
     doctor: {
@@ -181,7 +180,7 @@ const getMySchedules = async (
     } : {})
   };
 
-  console.log(whereConditions)
+
   const doctorSchedules = await prisma.doctorSchedule.findMany({
     where: whereConditions,
     include: {

@@ -90,11 +90,8 @@ const getMyAppointment = async (
     options: IPaginationOptions,
     authUser: IAuthUser
 ): Promise<IGenericResponse<Appointment[]>> => {
-    console.log(authUser)
     const { limit, page, skip } = paginationHelpers.calculatePagination(options);
     const andConditions = [];
-
-    console.log(filters)
 
     if (authUser?.role === UserRole.PATIENT) {
         andConditions.push(

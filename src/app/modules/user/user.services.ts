@@ -28,7 +28,6 @@ const createDoctor = async (req: Request) => {
       data: {
         email: req.body.doctor.email,
         password: hashPassword,
-        pushNotificationToken: req.body.pushNotificationToken,
         role: UserRole.DOCTOR,
       },
     });
@@ -56,7 +55,6 @@ const createAdmin = async (req: Request): Promise<Admin> => {
       data: {
         email: req.body.admin.email,
         password: hashPassword,
-        pushNotificationToken: req.body.pushNotificationToken,
         role: UserRole.ADMIN,
       },
     });
@@ -84,7 +82,6 @@ const createPatient = async (req: Request): Promise<Patient> => {
       data: {
         email: req.body.patient.email,
         password: hashPassword,
-        pushNotificationToken: req.body.pushNotificationToken,
         role: UserRole.PATIENT,
       },
     });
@@ -104,7 +101,6 @@ const changeProfileStatus = async (userId: string, status: UserStatus) => {
       id: userId,
     },
   });
-  console.log(isUserExist);
   if (!isUserExist) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'User does not exists!');
   }
@@ -227,7 +223,6 @@ const getMyProfile = async (authUser: any) => {
 
 const updateMyProfile = async (authUser: any, req: Request) => {
 
-  console.log("hello update", req.body);
   const userData = await prisma.user.findUnique({
     where: {
       id: authUser.userId,

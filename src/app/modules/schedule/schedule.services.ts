@@ -48,7 +48,6 @@ const insertIntoDB = async (data: ISchedule): Promise<Schedule[]> => {
     currentDate.setDate(currentDate.getDate() + 1);
   }
 
-  console.log(schedules)
   return schedules;
 };
 
@@ -165,7 +164,6 @@ const getAllFromDB = async (
   });
 
   const doctorScheduleIds = new Set(doctorsSchedules.map(schedule => schedule.scheduleId));
-  console.log(doctorScheduleIds);
 
   const result = await prisma.schedule.findMany({
     where: {

@@ -208,7 +208,6 @@ const updateIntoDB = async (
     if (!result) {
       throw new ApiError(httpStatus.BAD_REQUEST, 'Unable to update Doctor');
     }
-    console.log({ specialties })
     if (specialties && specialties.length > 0) {
       const deleteSpecialities = specialties.filter(
         speciality => speciality.specialtiesId && speciality.isDeleted,
@@ -217,8 +216,6 @@ const updateIntoDB = async (
       const newSpecialities = specialties.filter(
         speciality => speciality.specialtiesId && !speciality.isDeleted,
       );
-
-      console.log({ deleteSpecialities, newSpecialities });
 
       await asyncForEach(
         deleteSpecialities,

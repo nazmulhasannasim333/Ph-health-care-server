@@ -184,7 +184,6 @@ const getBarChartData = async () => {
         month,
         count: Number(count), // Convert BigInt to integer
     }));
-    //console.log({ formattedMetadata })
     return formattedMetadata;
 }
 
@@ -194,8 +193,6 @@ const getPieChartData = async () => {
         by: ['status'],
         _count: { id: true },
     });
-
-    //console.log(appointmentStatusDistribution)
 
     const formattedData = appointmentStatusDistribution.map(({ status, _count }) => ({
         status,
