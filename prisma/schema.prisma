@@ -11,18 +11,17 @@ datasource db {
 }
 
 model User {
-  id                    String     @id @default(uuid())
-  email                 String     @unique
-  password              String
-  role                  UserRole
-  needPasswordChange    Boolean    @default(true)
-  pushNotificationToken String?
-  status                UserStatus @default(ACTIVE)
-  createdAt             DateTime   @default(now())
-  updatedAt             DateTime   @updatedAt
-  doctor                Doctor?
-  patient               Patient?
-  admin                 Admin?
+  id                 String     @id @default(uuid())
+  email              String     @unique
+  password           String
+  role               UserRole
+  needPasswordChange Boolean    @default(true)
+  status             UserStatus @default(ACTIVE)
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+  doctor             Doctor?
+  patient            Patient?
+  admin              Admin?
 
   @@map("users")
 }
@@ -135,20 +134,14 @@ model MedicalReport {
 }
 
 model Admin {
-  id            String         @id @unique @default(uuid())
-  email         String         @unique
+  id            String   @id @unique @default(uuid())
+  email         String   @unique
   name          String
   profilePhoto  String?
-  contactNumber String
-  designation   String
-  dateOfBirth   DateTime
-  gender        Gender
-  bloodGroup    BloodGroup?
-  weight        String?
-  maritalStatus MaritalStatus?
-  isDeleted     Boolean        @default(false)
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  contactNumber String?
+  isDeleted     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   user User @relation(references: [email], fields: [email])
 
