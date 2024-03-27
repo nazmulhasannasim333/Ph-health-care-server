@@ -6,45 +6,46 @@ import { IPaginationOptions } from '../../../interfaces/pagination';
 import { IGenericResponse } from '../../../interfaces/common';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 
-const insertIntoDB = async (data: ISchedule): Promise<Schedule[]> => {
-  const { startDate, endDate, startTime, endTime } = data;
+const insertIntoDB = async (payload: ISchedule): Promise<Schedule[]> => {
+  const { startDate, endDate, startTime, endTime } = payload;
+
+  const intervalTime = 30; // Interval time in minutes
 
   const schedules: Schedule[] = [];
-  const intervalMinutes = 30;
 
-  let currentDate = new Date(startDate);
+  const currentDate = new Date(startDate);
+  const lastDate = new Date(endDate);
 
-  while (currentDate <= new Date(endDate)) {
-    const startDateTime = new Date(
-      addHours(
-        `${format(currentDate, 'yyyy-MM-dd')}`,
-        Number(startTime?.split(':')[0]),
-      ),
-    );
+  while (currentDate <= lastDate) {
+    const startDateTime = addHours(new Date(currentDate), new Date(startTime).getHours());
+    startDateTime.setMinutes(new Date(startTime).getMinutes());
 
-    const endDateTime = new Date(
-      addHours(
-        `${format(currentDate, 'yyyy-MM-dd')}`,
-        Number(endTime?.split(':')[0]),
-      ),
-    );
+    const endDateTime = addHours(new Date(currentDate), new Date(endTime).getHours());
+    endDateTime.setMinutes(new Date(endTime).getMinutes());
 
-    // Create schedules with a 30-minute interval
     while (startDateTime < endDateTime) {
       const scheduleData = {
         startDate: startDateTime,
-        endDate: addMinutes(startDateTime, intervalMinutes),
+        endDate: addMinutes(startDateTime, intervalTime)
       };
 
-      const result = await prisma.schedule.create({
-        data: scheduleData,
+      const existingSchedule = await prisma.schedule.findFirst({
+        where: {
+          startDate: scheduleData.startDate,
+          endDate: scheduleData.endDate
+        }
       });
-      schedules.push(result);
 
-      startDateTime.setMinutes(startDateTime.getMinutes() + intervalMinutes);
+      if (!existingSchedule) {
+        const result = await prisma.schedule.create({
+          data: scheduleData
+        });
+        schedules.push(result);
+      }
+
+      startDateTime.setMinutes(startDateTime.getMinutes() + intervalTime);
     }
 
-    // Move to the next date
     currentDate.setDate(currentDate.getDate() + 1);
   }
 
