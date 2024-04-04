@@ -6,45 +6,74 @@ import { IPaginationOptions } from '../../../interfaces/pagination';
 import { IGenericResponse } from '../../../interfaces/common';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 
-const insertIntoDB = async (data: ISchedule): Promise<Schedule[]> => {
-  const { startDate, endDate, startTime, endTime } = data;
+const convertDateTime = async (date: Date) => {
+  const offset = date.getTimezoneOffset() * 60000;
+  return new Date(date.getTime() + offset);
+}
 
-  const schedules: Schedule[] = [];
-  const intervalMinutes = 30;
+const insertIntoDB = async (payload: ISchedule): Promise<Schedule[]> => {
+  const { startDate, endDate, startTime, endTime } = payload;
 
-  let currentDate = new Date(startDate);
+  const interverlTime = 30;
 
-  while (currentDate <= new Date(endDate)) {
+  const schedules = [];
+
+  const currentDate = new Date(startDate); // start date
+  const lastDate = new Date(endDate) // end date
+
+  while (currentDate <= lastDate) {
+    // 09:30  ---> ['09', '30']
     const startDateTime = new Date(
-      addHours(
-        `${format(currentDate, 'yyyy-MM-dd')}`,
-        Number(startTime?.split(':')[0]),
-      ),
+      addMinutes(
+        addHours(
+          `${format(currentDate, 'yyyy-MM-dd')}`,
+          Number(startTime.split(':')[0])
+        ),
+        Number(startTime.split(':')[1])
+      )
     );
 
     const endDateTime = new Date(
-      addHours(
-        `${format(currentDate, 'yyyy-MM-dd')}`,
-        Number(endTime?.split(':')[0]),
-      ),
+      addMinutes(
+        addHours(
+          `${format(currentDate, 'yyyy-MM-dd')}`,
+          Number(endTime.split(':')[0])
+        ),
+        Number(endTime.split(':')[1])
+      )
     );
 
-    // Create schedules with a 30-minute interval
     while (startDateTime < endDateTime) {
+      // const scheduleData = {
+      //     startDateTime: startDateTime,
+      //     endDateTime: addMinutes(startDateTime, interverlTime)
+      // }
+
+      const s = await convertDateTime(startDateTime);
+      const e = await convertDateTime(addMinutes(startDateTime, interverlTime))
+
       const scheduleData = {
-        startDate: startDateTime,
-        endDate: addMinutes(startDateTime, intervalMinutes),
-      };
+        startDate: s,
+        endDate: e
+      }
 
-      const result = await prisma.schedule.create({
-        data: scheduleData,
+      const existingSchedule = await prisma.schedule.findFirst({
+        where: {
+          startDate: scheduleData.startDate,
+          endDate: scheduleData.endDate
+        }
       });
-      schedules.push(result);
 
-      startDateTime.setMinutes(startDateTime.getMinutes() + intervalMinutes);
+      if (!existingSchedule) {
+        const result = await prisma.schedule.create({
+          data: scheduleData
+        });
+        schedules.push(result);
+      }
+
+      startDateTime.setMinutes(startDateTime.getMinutes() + interverlTime);
     }
 
-    // Move to the next date
     currentDate.setDate(currentDate.getDate() + 1);
   }
 
