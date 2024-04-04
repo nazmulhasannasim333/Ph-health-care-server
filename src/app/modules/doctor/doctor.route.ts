@@ -27,12 +27,13 @@ router.patch(
 router.delete(
   '/:id',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
-  DoctorController.deleteFromDB
+  DoctorController.deleteFromDB,
 );
 
 router.delete(
   '/soft/:id',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
-  DoctorController.softDelete);
+  DoctorController.softDelete,
+);
 
 export const DoctorRoutes = router;

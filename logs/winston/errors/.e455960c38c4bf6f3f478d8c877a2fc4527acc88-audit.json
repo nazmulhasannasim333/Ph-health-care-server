@@ -1,0 +1,60 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "E:\\WEB INSTRUCTOR\\Level-2.0\\NextJS Recorded Videos\\Batch-2\\NextJs Projects\\HealthCare-Server\\logs\\winston\\errors\\.e455960c38c4bf6f3f478d8c877a2fc4527acc88-audit.json",
+    "files": [
+        {
+            "date": 1711177197401,
+            "name": "E:\\WEB INSTRUCTOR\\Level-2.0\\NextJS Recorded Videos\\Batch-2\\NextJs Projects\\HealthCare-Server\\logs\\winston\\errors\\phu-2024-23-03-12-error.log",
+            "hash": "d341565a5f34148c1e6ccdab12d0f6101af2bd3184c0bdc4df44c10b01bed183"
+        },
+        {
+            "date": 1711342259500,
+            "name": "E:\\WEB INSTRUCTOR\\Level-2.0\\NextJS Recorded Videos\\Batch-2\\NextJs Projects\\HealthCare-Server\\logs\\winston\\errors\\phu-2024-25-03-10-error.log",
+            "hash": "16aae1e0dafe07973bdc05dd38118f74ca2451774c31e862db705baa6e15febc"
+        },
+        {
+            "date": 1711346915253,
+            "name": "E:\\WEB INSTRUCTOR\\Level-2.0\\NextJS Recorded Videos\\Batch-2\\NextJs Projects\\HealthCare-Server\\logs\\winston\\errors\\phu-2024-25-03-12-error.log",
+            "hash": "10b262ef9d8d02f54f8054f4be72c1fc6455d12b68e3c7daf173d44274b4ad88"
+        },
+        {
+            "date": 1711470781898,
+            "name": "E:\\WEB INSTRUCTOR\\Level-2.0\\NextJS Recorded Videos\\Batch-2\\NextJs Projects\\HealthCare-Server\\logs\\winston\\errors\\phu-2024-26-03-22-error.log",
+            "hash": "988b78bdcb76a8e5c5e0437885a26cdabf288b94a7a5ed0554288bff553b0d6d"
+        },
+        {
+            "date": 1711516677726,
+            "name": "E:\\WEB INSTRUCTOR\\Level-2.0\\NextJS Recorded Videos\\Batch-2\\NextJs Projects\\HealthCare-Server\\logs\\winston\\errors\\phu-2024-27-03-11-error.log",
+            "hash": "6b6d155351ff8813d90cca7e8904b8b891947b86675291cd2cfa15c0ce5ecbdf"
+        },
+        {
+            "date": 1711539788781,
+            "name": "E:\\WEB INSTRUCTOR\\Level-2.0\\NextJS Recorded Videos\\Batch-2\\NextJs Projects\\HealthCare-Server\\logs\\winston\\errors\\phu-2024-27-03-17-error.log",
+            "hash": "608708e1ca69448a9ebd5afb76a624316500c86ea6475d6429cf562399cd8791"
+        },
+        {
+            "date": 1711566025446,
+            "name": "E:\\WEB INSTRUCTOR\\Level-2.0\\NextJS Recorded Videos\\Batch-2\\NextJs Projects\\HealthCare-Server\\logs\\winston\\errors\\phu-2024-28-03-01-error.log",
+            "hash": "96b37f27b45f1043e1288409861d81a2b4ebced8cbe1bb9a1c1ff255d41b1b1f"
+        },
+        {
+            "date": 1711782754413,
+            "name": "E:\\WEB INSTRUCTOR\\Level-2.0\\NextJS Recorded Videos\\Batch-2\\NextJs Projects\\HealthCare-Server\\logs\\winston\\errors\\phu-2024-30-03-13-error.log",
+            "hash": "979b7759450111cf43240748c9399cf32b63d0293e33db4444b94d2969795a45"
+        },
+        {
+            "date": 1711805596789,
+            "name": "E:\\WEB INSTRUCTOR\\Level-2.0\\NextJS Recorded Videos\\Batch-2\\NextJs Projects\\HealthCare-Server\\logs\\winston\\errors\\phu-2024-30-03-19-error.log",
+            "hash": "0c22d46cf041e8ef5d5e1521bf9bf80fb13a2f2113d21edc711ab371a7c00209"
+        },
+        {
+            "date": 1712119520353,
+            "name": "E:\\WEB INSTRUCTOR\\Level-2.0\\NextJS Recorded Videos\\Batch-2\\NextJs Projects\\HealthCare-Server\\logs\\winston\\errors\\phu-2024-03-04-10-error.log",
+            "hash": "3068f660329941cb1062dba8a09d6d6636aac1cf06ca4a86fbb08a37b4bc9ce8"
+        }
+    ],
+    "hashType": "sha256"
+}
