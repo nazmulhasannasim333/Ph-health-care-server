@@ -1,7 +1,12 @@
 import dotenv from 'dotenv';
 import path from 'path';
 
-dotenv.config({ path: path.join(process.cwd(), '.env') });
+const envPath =
+  process.env.NODE_ENV === 'production'
+    ? path.join(process.cwd(), '.env.prod')
+    : path.join(process.cwd(), '.env');
+
+dotenv.config({ path: envPath });
 
 export default {
   env: process.env.NODE_ENV,
@@ -30,6 +35,6 @@ export default {
   cloudinary: {
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
-    api_secret: process.env.API_SECRET
-  }
+    api_secret: process.env.API_SECRET,
+  },
 };

@@ -7,10 +7,18 @@ import cookieParser from 'cookie-parser';
 import cron from 'node-cron';
 import { AppointmentServices } from './app/modules/appointment/appointment.services';
 import { errorlogger } from './shared/logger';
+import config from './config';
 
 const app: Application = express();
 
-app.use(cors());
+console.log({ db: config.database_url });
+
+app.use(
+  cors({
+    origin: ['http://localhost:3000', 'http://localhost:3001'],
+    credentials: true,
+  }),
+);
 app.use(cookieParser());
 
 //parser
@@ -32,7 +40,7 @@ cron.schedule('* * * * *', async (): Promise<void> => {
   } catch (error) {
     errorlogger.error(error);
   }
-})
+});
 
 //global error handler
 app.use(globalErrorHandler);

@@ -89,7 +89,6 @@ const insertIntoDB = async (data: Doctor): Promise<Doctor> => {
 //   };
 // };
 
-
 const getAllFromDB = async (
   filters: IDoctorFilterRequest,
   options: IPaginationOptions,
@@ -146,9 +145,10 @@ const getAllFromDB = async (
     where: whereConditions,
     skip,
     take: limit,
-    orderBy: options.sortBy && options.sortOrder
-      ? { [options.sortBy]: options.sortOrder }
-      : { averageRating: 'desc' },
+    orderBy:
+      options.sortBy && options.sortOrder
+        ? { [options.sortBy]: options.sortOrder }
+        : { averageRating: 'desc' },
     include: {
       review: {
         select: {
@@ -157,9 +157,9 @@ const getAllFromDB = async (
       },
       doctorSpecialties: {
         include: {
-          specialties: true
-        }
-      }
+          specialties: true,
+        },
+      },
     },
   });
 
@@ -177,7 +177,6 @@ const getAllFromDB = async (
   };
 };
 
-
 const getByIdFromDB = async (id: string): Promise<Doctor | null> => {
   const result = await prisma.doctor.findUnique({
     where: {
@@ -187,8 +186,8 @@ const getByIdFromDB = async (id: string): Promise<Doctor | null> => {
     include: {
       doctorSpecialties: true,
       schedules: true,
-      review: true
-    }
+      review: true,
+    },
   });
   return result;
 };
@@ -205,6 +204,7 @@ const updateIntoDB = async (
       },
       data: doctorData,
     });
+    console.log(doctorData);
     if (!result) {
       throw new ApiError(httpStatus.BAD_REQUEST, 'Unable to update Doctor');
     }
@@ -237,12 +237,22 @@ const updateIntoDB = async (
       await asyncForEach(
         newSpecialities,
         async (insertDoctorSpeciality: ISpecialties) => {
-          await transactionClient.doctorSpecialties.create({
-            data: {
-              doctorId: id,
+          //@ needed to already added specialties
+          const existingSpecialties = await prisma.doctorSpecialties.findFirst({
+            where: {
               specialtiesId: insertDoctorSpeciality.specialtiesId,
+              doctorId: id,
             },
           });
+
+          if (!existingSpecialties) {
+            await transactionClient.doctorSpecialties.create({
+              data: {
+                doctorId: id,
+                specialtiesId: insertDoctorSpeciality.specialtiesId,
+              },
+            });
+          }
         },
       );
     }
@@ -305,12 +315,11 @@ const softDelete = async (id: string): Promise<Doctor> => {
   });
 };
 
-
 export const DoctorService = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
   updateIntoDB,
   deleteFromDB,
-  softDelete
+  softDelete,
 };
