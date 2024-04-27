@@ -11,6 +11,7 @@ import config from './config';
 
 const app: Application = express();
 
+<<<<<<< HEAD
 console.log({ db: config.database_url });
 
 app.use(
@@ -19,6 +20,10 @@ app.use(
     credentials: true,
   }),
 );
+=======
+app.use(cors({ origin: ['http://localhost:3000','http://localhost:3001'], credentials: true }));
+
+>>>>>>> 28401f9d319fa2635c6805217026846d6e8e4916
 app.use(cookieParser());
 
 //parser
