@@ -237,7 +237,7 @@ const updateIntoDB = async (
       await asyncForEach(
         newSpecialities,
         async (insertDoctorSpeciality: ISpecialties) => {
-          //@ needed to already added specialties
+          //@ needed for already added specialties
           const existingSpecialties = await prisma.doctorSpecialties.findFirst({
             where: {
               specialtiesId: insertDoctorSpeciality.specialtiesId,
