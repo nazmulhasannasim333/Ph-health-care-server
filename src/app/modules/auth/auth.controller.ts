@@ -72,6 +72,10 @@ const forgotPass = catchAsync(async (req: Request, res: Response) => {
     statusCode: 200,
     success: true,
     message: 'Check your email!',
+    data: {
+      status: 200,
+      message: 'Check your email for reset link!',
+    },
   });
 });
 
@@ -83,6 +87,10 @@ const resetPassword = catchAsync(async (req: Request, res: Response) => {
     statusCode: 200,
     success: true,
     message: 'Account recovered!',
+    data: {
+      status: 200,
+      message: 'Password Reset Successfully',
+    },
   });
 });
 
